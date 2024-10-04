@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/community"
+        android:enabled="true"
+        android:icon="@drawable/community_icon"
+        android:title="Community." />
+    <item
+        android:id="@+id/game"
+        android:enabled="true"
+        android:icon="@drawable/game_icon"
+        android:title="Game" />
+    <item
+        android:id="@+id/seed"
+        android:enabled="true"
+        android:icon="@drawable/seed_icon"
+        android:title="Seed" />
+    <item
+        android:id="@+id/user"
+        android:enabled="true"
+        android:icon="@drawable/user_icon"
+        android:title="User" />
+    <item
+        android:id="@+id/settings"
+        android:enabled="true"
+        android:icon="@drawable/settings_icon"
+        android:title="Settings" />
+</menu>
