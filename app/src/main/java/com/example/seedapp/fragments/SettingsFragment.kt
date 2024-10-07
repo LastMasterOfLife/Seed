@@ -73,6 +73,10 @@ class SettingsFragment : Fragment() {
         binding.privacy.setOnClickListener {
             parentFragmentManager.beginTransaction().replace(R.id.container, PrivacyFragment()).addToBackStack(null).commit()
         }
+
+        binding.policy.setOnClickListener {
+            parentFragmentManager.beginTransaction().replace(R.id.container, PolicyFragment()).addToBackStack(null).commit()
+        }
     }
 
     override fun onDestroyView() {
