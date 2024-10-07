@@ -69,6 +69,10 @@ class SettingsFragment : Fragment() {
         binding.lingua.setOnClickListener {
             parentFragmentManager.beginTransaction().replace(R.id.container, LanguageFragment()).addToBackStack(null).commit()
         }
+
+        binding.privacy.setOnClickListener {
+            parentFragmentManager.beginTransaction().replace(R.id.container, PrivacyFragment()).addToBackStack(null).commit()
+        }
     }
 
     override fun onDestroyView() {
