@@ -81,6 +81,10 @@ class SettingsFragment : Fragment() {
         binding.sicurezza.setOnClickListener {
             parentFragmentManager.beginTransaction().replace(R.id.container,SecurityFragment()).addToBackStack(null).commit()
         }
+
+        binding.community.setOnClickListener {
+            parentFragmentManager.beginTransaction().replace(R.id.container, CommunitySettingsFragment()).addToBackStack(null).commit()
+        }
     }
 
     override fun onDestroyView() {
