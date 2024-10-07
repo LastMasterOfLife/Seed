@@ -77,6 +77,10 @@ class SettingsFragment : Fragment() {
         binding.policy.setOnClickListener {
             parentFragmentManager.beginTransaction().replace(R.id.container, PolicyFragment()).addToBackStack(null).commit()
         }
+
+        binding.sicurezza.setOnClickListener {
+            parentFragmentManager.beginTransaction().replace(R.id.container,SecurityFragment()).addToBackStack(null).commit()
+        }
     }
 
     override fun onDestroyView() {
