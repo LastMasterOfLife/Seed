@@ -3,6 +3,6 @@
     android:shape="oval">
     <solid android:color="@android:color/transparent"/>  <!-- Colore di sfondo del pulsante -->
     <size
-        android:width="180dp"
-        android:height="180dp"/>  <!-- Dimensioni del pulsante -->
+        android:width="50dp"
+        android:height="50dp"/>  <!-- Dimensioni del pulsante -->
 </shape>

@@ -1,14 +1,13 @@
 package com.example.seedapp.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.replace
-import com.example.seedapp.NotificationFragment
-import com.example.seedapp.R
+import com.example.seedapp.LanguageActivity
+import com.example.seedapp.PrivacyActivity
 import com.example.seedapp.databinding.FragmentSettingsBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -56,34 +55,35 @@ class SettingsFragment : Fragment() {
 
         // Utilizza il binding per impostare l'azione del pulsante
         binding.notifiche.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.container, NotificationFragment())
-                .addToBackStack(null)
-                .commit()
+
         }
 
         binding.suono.setOnClickListener{
-            parentFragmentManager.beginTransaction().replace(R.id.container, SoundFragment()).addToBackStack(null).commit()
+
         }
 
         binding.lingua.setOnClickListener {
-            parentFragmentManager.beginTransaction().replace(R.id.container, LanguageFragment()).addToBackStack(null).commit()
+
+            val intent = Intent(requireContext(), LanguageActivity::class.java)
+            startActivity(intent)
+
         }
 
         binding.privacy.setOnClickListener {
-            parentFragmentManager.beginTransaction().replace(R.id.container, PrivacyFragment()).addToBackStack(null).commit()
+            val intent = Intent(requireContext(), PrivacyActivity::class.java)
+            startActivity(intent)
         }
 
         binding.policy.setOnClickListener {
-            parentFragmentManager.beginTransaction().replace(R.id.container, PolicyFragment()).addToBackStack(null).commit()
+
         }
 
         binding.sicurezza.setOnClickListener {
-            parentFragmentManager.beginTransaction().replace(R.id.container,SecurityFragment()).addToBackStack(null).commit()
+
         }
 
         binding.community.setOnClickListener {
-            parentFragmentManager.beginTransaction().replace(R.id.container, CommunitySettingsFragment()).addToBackStack(null).commit()
+
         }
     }
 

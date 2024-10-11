@@ -6,15 +6,15 @@
     <string name="suono">Sound</string>
     <string name="lingua">Language</string>
     <string name="sicurezza">Security</string>
-    <string name="privacy">Privacy</string>
-    <string name="policy">Policy</string>
-    <string name="community">Community</string>
+    <string name="privacy" translatable="false">Privacy</string>
+    <string name="policy" translatable="false">Policy</string>
+    <string name="community" translatable="false">Community</string>
     <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
+    <string name="messages_header" translatable="false">Messages</string>
+    <string name="sync_header" translatable="false">Sync</string>
 
     <string name="privacytitolo">informativa alla Privacy</string>
-    <string name="dataprivacy">07/10/2024</string>
+    <string name="dataprivacy" translatable="false">07/10/2024</string>
     <string name="PrivacyTesto">
 
 La presente Informativa sulla Privacy descrive le modalità con cui raccogliamo, utilizziamo e proteggiamo le informazioni personali dell\'utente all\'interno della nostra applicazione (di seguito "l\'App").
@@ -52,13 +52,16 @@ Contatti
 Per domande o chiarimenti sulla presente Informativa, si prega di contattarci all\'indirizzo email "SeedApp@gmail.com".</string>
 
     <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
+    <string name="signature_title" translatable="false">Your signature</string>
+    <string name="reply_title" translatable="false">Default reply action</string>
 
     <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    <string name="sync_title" translatable="false">Sync email periodically</string>
+    <string name="attachment_title" translatable="false">Download incoming attachments</string>
+    <string name="attachment_summary_on" translatable="false">Automatically download attachments for incoming emails
     </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="attachment_summary_off" translatable="false">Only download attachments when manually requested</string>
+
+    <string name="ita">italiano</string>
+    <string name="eng">Inglese</string>
 </resources>
