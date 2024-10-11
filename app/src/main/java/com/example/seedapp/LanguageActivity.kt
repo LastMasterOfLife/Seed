@@ -29,15 +29,12 @@ class LanguageActivity : AppCompatActivity() {
         setContentView(binging.root)
 
         binging.eng.setOnClickListener {
-           // setLocale("en", this)
-            Settings.language = "en"
-            recreate()
-            binging.eng.setBackgroundColor(ContextCompat.getColor(this, R.color.primary))
+            setLocale("en")
+
         }
 
         binging.italiano.setOnClickListener {
-            Settings.language = "it"
-            recreate()
+            setLocale("it")
         }
 
         binging.back.setOnClickListener {
@@ -46,26 +43,20 @@ class LanguageActivity : AppCompatActivity() {
 
     }
 
-    override fun attachBaseContext(newBase: Context?) {
-        val newConfiguration = Configuration(newBase?.resources?.configuration).apply {
-            setLocale(Locale(Settings.language))
 
-        }
-
-        super.attachBaseContext(newBase?.createConfigurationContext(newConfiguration))
-    }
-
-
-    fun setLocale(languageCode: String, context: Context) {
+    private fun setLocale(languageCode: String) {
         val locale = Locale(languageCode)
         Locale.setDefault(locale)
-        val config = context.resources.configuration
+        val config = resources.configuration
         config.setLocale(locale)
-        context.createConfigurationContext(config)
+        resources.updateConfiguration(config, resources.displayMetrics)
 
-        // Riavvia l'Activity per applicare il cambio di lingua
-        if (context is Activity) {
-            context.recreate()
-        }
+        // Salva la lingua selezionata nelle Shared Preferences
+        val preferences = getSharedPreferences("app_preferences", MODE_PRIVATE)
+        preferences.edit().putString("LANGUAGE_KEY", languageCode).apply()
+
+        // Ricarica l'attività per applicare il cambiamento
+        recreate()
     }
+
 }

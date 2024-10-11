@@ -9,17 +9,21 @@ import com.example.seedapp.fragments.SeedFragment
 import com.example.seedapp.fragments.SettingsFragment
 import com.example.seedapp.fragments.UserFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        applySavedLanguage()
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
+        // Inizializza LanguageManager e carica la lingua salvata
 
         setContentView(binding.root)
+
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
@@ -54,5 +58,16 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
+    }
+
+    private fun applySavedLanguage() {
+        val preferences = getSharedPreferences("app_preferences", MODE_PRIVATE)
+        val languageCode = preferences.getString("LANGUAGE_KEY", "it") // Inglese di default
+
+        val locale = Locale(languageCode!!)
+        Locale.setDefault(locale)
+        val config = resources.configuration
+        config.setLocale(locale)
+        resources.updateConfiguration(config, resources.displayMetrics)
     }
 }
