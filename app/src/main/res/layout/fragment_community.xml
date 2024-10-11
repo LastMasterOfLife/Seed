@@ -3,12 +3,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.CommunityFragment">
+    tools:context=".fragments.CommunityFragment"
+    android:background="@color/secondary">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <View
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="190dp"
+
+                android:id="@+id/backgroundView"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:background="@color/background"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/message"
+                android:textSize="18sp"
+                app:layout_constraintTop_toTopOf="@id/backgroundView"
+                app:layout_constraintBottom_toBottomOf="@id/backgroundView"
+                app:layout_constraintStart_toStartOf="@id/backgroundView"
+                app:layout_constraintEnd_toEndOf="@id/backgroundView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
 
 </FrameLayout>
