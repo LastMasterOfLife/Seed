@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.seedapp.LanguageActivity
 import com.example.seedapp.PrivacyActivity
+import com.example.seedapp.SoundActivity
 import com.example.seedapp.databinding.FragmentSettingsBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -59,7 +60,8 @@ class SettingsFragment : Fragment() {
         }
 
         binding.suono.setOnClickListener{
-
+            val intent = Intent(requireContext(), SoundActivity::class.java)
+            startActivity(intent)
         }
 
         binding.lingua.setOnClickListener {
