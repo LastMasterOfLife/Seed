@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.seedapp.GeneraliActivity
 import com.example.seedapp.LanguageActivity
+import com.example.seedapp.PolicyActivity
 import com.example.seedapp.PrivacyActivity
 import com.example.seedapp.SoundActivity
 import com.example.seedapp.databinding.FragmentSettingsBinding
@@ -73,6 +74,8 @@ class SettingsFragment : Fragment() {
 
         binding.policy.setOnClickListener {
 
+            val intent = Intent(requireContext(), PolicyActivity::class.java)
+            startActivity(intent)
         }
 
         binding.sicurezza.setOnClickListener {

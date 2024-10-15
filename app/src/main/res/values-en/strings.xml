@@ -6,8 +6,33 @@
     <string name="suono">Sound</string>
     <string name="lingua">Language</string>
     <string name="sicurezza">Security</string>
-    <string name="privacytitolo">Privacy Policy</string>
-    <string name="PrivacyTesto">This Privacy Policy describes how we collect, use and protect your personal information within our application (hereinafter “l\\\'App”).         By using the App, you agree to the terms of this policy.          Data collected During the use of the App, we collect various types of personal data to facilitate the user experience and optimize the services offered: Personally identifiable information: name, email address, phone number (only when provided voluntarily). Geolocation data: precise or approximate location of the user, used to improve features such as localized suggestions or notifications. Application usage data: how, when and what features are used, to personalize and optimize the content and services offered. Sensitive data: any personal data that the user voluntarily shares with the App that could be considered sensitive, such as health data or personal preferences.     Data Usage The data collected is used exclusively to improve the use and functionality of the l\\\'App. Specifically:  To personalize content and provide personalized suggestions. To provide smooth navigation and better interaction with the features of the App.   Translated with DeepL.com (free version) To analyze the use of the App and improve the quality of our services. To send notifications, alerts or updates, based on user preferences. 3. Data Sharing. We do not share your personal data with third parties unless we are required to do so:  To fulfill legal obligations: in case of legal obligations or requests from competent authorities. With third-party service providers: for services necessary for the App (e.g., hosting services or data analysis), and only if those parties provide equivalent data protections. 4. Data Protection. We take appropriate technical and organizational measures to protect your data from unauthorized access, loss, alteration, or disclosure.  5. User Rights. You have the right to access, rectify or delete your personal data and to restrict or object to its processing. To exercise these rights, you can contact us at the email address “SeedApp@gmail.com”.  6. Updates We reserve the right to update this privacy policy periodically. Any changes will be communicated through l\\\'App or other appropriate means.  Contact If you have any questions or concerns about this Policy, please contact us at \\e-mail “SeedApp@gmail.com”.  Translated with DeepL.com (free version)To analyze the use of the App and improve the quality of our services. To send notifications, alerts or updates, based on user preferences. 3. Data Sharing. We do not share your personal data with third parties unless we are required to do so:  To fulfill legal obligations: in case of legal obligations or requests from competent authorities. With third-party service providers: for services necessary for the App (e.g., hosting services or data analysis), and only if those parties provide equivalent data protections. 4. Data Protection. We take appropriate technical and organizational measures to protect your data from unauthorized access, loss, alteration, or disclosure.  5. User Rights. You have the right to access, rectify or delete your personal data and to restrict or object to its processing. To exercise these rights, you can contact us at the email address “SeedApp@gmail.com”.  6. Updates We reserve the right to update this privacy policy periodically. Any changes will be communicated through l\\\'App or other appropriate means.  Contact If you have any questions or concerns about this Policy, please contact us at \\e-mail “SeedApp@gmail.com”.  Translated with DeepL.com (free version)</string>
+    <string name="privacytitolo">SEED Privacy Policy and Terms of Use</string>
+    <string name="PrivacyTesto">This Privacy Policy describes how we collect,
+        use and protect your personal information within our application (hereinafter “App”).
+        By using the App, you agree to the terms of this policy.
+        1. Data collected During the use of the App, we collect various types of personal data to facilitate the user experience and
+        optimize the services offered: Personally identifiable information: name,
+        email address, phone number (only when provided
+        voluntarily). Geolocation data: precise or approximate location of the user, used to improve
+        functionality such as localized suggestions or notifications.
+        Application usage data: how, when and what features are used, to personalize
+        and optimize the content and services offered. Sensitive data: any personal data that the user shares.
+        Privacy Policy and Terms of Use of SEEDvoluntarily with the App and that could be considered sensitive,
+        such as health data or personal preferences.2. Use of data The data collected is used solely to improve the use and
+        functionality of the App. Specifically:  To personalize content and provide personalized suggestions.
+        To provide smooth navigation and better interaction with the features of the App. To analyze
+        App usage and improve the quality of our services. To send notifications, alerts or updates,
+        based on user preferences. 3. Data Sharing We do not share your personal data
+        with third parties, unless required: To fulfill legal obligations: in case of legal obligations or requests
+        by competent authorities. With third-party service providers: for services necessary for the App (for example, services
+        hosting or data analysis), and only if such parties provide equivalent data protections.4. Protection of
+        data We take appropriate technical and organizational measures to protect your data from unauthorized access
+        authorized, loss, alteration or disclosure.  5. User Rights You have the right to access,
+        rectify or delete their personal data, as well as to restrict or oppose their processing.
+        To exercise these rights, you can contact us at e-mail address "SeedApp@gmail.com".
+        6. Updates We reserve the right to update this privacy policy periodically.
+        Any changes will be communicated through the App or other appropriate means.  Contact Us For questions or
+        clarifications about this Policy, please contact us at "SeedApp@gmail.com".</string>
     <string name="ita">italian</string>
     <string name="eng">English</string>
 
@@ -15,4 +40,47 @@
     <string name="obbiettivi">Target Notifications</string>
     <string name="sostenib">Sustainability Notifications</string>
     <string name="meteo">Weather Notifications</string>
+    <string name="titoloPolicy">SEED Privacy Policy and Terms of Use</string>
+    <string name="policyTesto">Thank you for choosing SEED (Self-Evolving Environmental Development). Your privacy and the security of your data are paramount to us. This policy describes our practices regarding data collection, use, and management and the terms of use of the SEED app.
+
+1. Data Collection.
+SEED collects only the data strictly necessary to provide a personalized experience and advanced personal growth and sustainability features. The data we may collect includes:
+
+Usage Data: Interactions with the app to improve functionality.
+Location data: Only when necessary, e.g., for suggestions contextualized to the surrounding environment.
+Calendar information: If authorized, to synchronize and provide reminders of events relevant to your personal growth.
+All data is collected with your consent and you can manage your permissions at any time in the app settings.
+
+2. Use of Data
+The data collected is used exclusively for:
+
+Improve the functionality of the app and user experience.
+Provide personalized suggestions for your growth and development.
+Enable calendar-related features, notifications, and reminders.
+We do not sell, rent or trade your personal data with third parties. Some anonymous and aggregated data may be shared with trusted partners for general analysis and improvements.
+
+3. Sharing of Data
+Your data will never be shared with third parties without your consent, unless required by law. In the event that we decide to partner with outside vendors for data analysis or security, we ensure that they adhere to high security standards and respect your privacy.
+
+4. Data Security.
+We use advanced security measures, such as encryption and access control, to protect your data. We keep your information as long as strictly necessary and allow you to request deletion of your data at any time.
+
+5. App Permissions.
+To provide an optimal experience, the SEED app requires certain permissions, including:
+
+Location Access: To provide contextual content.
+Notifications: To alert you of important events or tips.
+Calendar access: To synchronize events and reminders useful for your growth.
+You can deny or revoke permissions in your device settings; however, some functionality may be limited.
+
+6. Using Artificial Intelligence (AI).
+The SEED app uses AI to offer personalized suggestions and support your personal growth. l\'AI learns from your interactions with the app in an anonymous and privacy-preserving way. SEED does not use AI to make automated decisions that significantly impact you without explicit consent.
+
+7. Terms of Use and Limitations of Liability.
+Use of the SEED app is subject to the following terms:
+
+Liability: SEED cannot be held liable for any direct or indirect damages arising from the use of the app.
+Changes: SEED reserves the right to change this policy. We will notify you of any updates by notification or email.
+If you have any questions or would like more information, please contact us at supporto@seedapp.com.
+</string>
 </resources>
