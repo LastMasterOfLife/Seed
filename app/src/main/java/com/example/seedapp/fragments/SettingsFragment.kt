@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.seedapp.GeneraliActivity
 import com.example.seedapp.LanguageActivity
 import com.example.seedapp.PrivacyActivity
 import com.example.seedapp.SoundActivity
@@ -53,14 +54,8 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        // Utilizza il binding per impostare l'azione del pulsante
-        binding.notifiche.setOnClickListener {
-
-        }
-
-        binding.suono.setOnClickListener{
-            val intent = Intent(requireContext(), SoundActivity::class.java)
+        binding.generali.setOnClickListener{
+            val intent = Intent(requireContext(), GeneraliActivity::class.java)
             startActivity(intent)
         }
 

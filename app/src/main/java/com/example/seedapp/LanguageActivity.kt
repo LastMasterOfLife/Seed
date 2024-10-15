@@ -1,7 +1,9 @@
 package com.example.seedapp
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.provider.CalendarContract.Colors
@@ -29,18 +31,45 @@ class LanguageActivity : AppCompatActivity() {
         setContentView(binging.root)
 
         binging.eng.setOnClickListener {
-            setLocale("en")
+            showRestartDialog("en")
 
         }
 
         binging.italiano.setOnClickListener {
-            setLocale("it")
+            showRestartDialog("it")
         }
 
         binging.back.setOnClickListener {
             onBackPressed();
         }
 
+    }
+
+    private fun showRestartDialog(languageCode: String) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Cambio lingua")
+        builder.setMessage("Per applicare la nuova lingua è necessario riavviare l'app. Vuoi continuare?")
+
+        builder.setPositiveButton("Ok") { _, _ ->
+            // Chiudi e riapri l'app
+            setLocale(languageCode)
+            restartApp()
+        }
+
+        builder.setNegativeButton("Annulla") { dialog, _ ->
+            // Chiudi il popup senza fare nulla
+            dialog.dismiss()
+        }
+
+        val dialog = builder.create()
+        dialog.show()
+    }
+
+    private fun restartApp() {
+        val intent = Intent(applicationContext, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        startActivity(intent)
+        finish()
     }
 
 
