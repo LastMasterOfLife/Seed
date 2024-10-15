@@ -21,7 +21,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewSuonerie"
         android:layout_width="match_parent"
-        android:layout_height="648dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="17dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
