@@ -11,12 +11,8 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import android.view.View
 import android.widget.SeekBar
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.seedapp.databinding.ActivityGeneraliBinding
-import com.example.seedapp.databinding.ActivityPrivacyBinding
 
 class GeneraliActivity : AppCompatActivity() {
 
@@ -25,7 +21,7 @@ class GeneraliActivity : AppCompatActivity() {
 
     private val recreateReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
-            recreate() // Ricrea l'Activity quando ricevi il broadcast
+            recreate()
         }
     }
 
@@ -34,19 +30,85 @@ class GeneraliActivity : AppCompatActivity() {
         binding = ActivityGeneraliBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupInitialUI()
+        registerEventListeners()
+    }
+
+    private fun setupInitialUI() {
         binding.switchsuono.isChecked
         binding.linearSuoneria.visibility = View.VISIBLE
         binding.playWistley.visibility = View.VISIBLE
     }
+
+    private fun registerEventListeners() {
+        binding.switchsuono.setOnCheckedChangeListener { _, isChecked ->
+            handleSoundSwitch(isChecked)
+        }
+
+        binding.switchVivration.setOnCheckedChangeListener { _, isChecked ->
+            handleVibrationSwitch(isChecked)
+        }
+
+        binding.switchnotification.setOnCheckedChangeListener { _, isChecked ->
+            handleNotificationSwitch(isChecked)
+        }
+
+        binding.intensitySeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                updateVibration(progress)
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+        })
+
+        binding.playWistley.setOnClickListener {
+            startActivity(Intent(this, SuonerieActivity::class.java))
+        }
+
+        binding.back.setOnClickListener {
+            onBackPressed()
+        }
+    }
+
+    private fun handleSoundSwitch(isChecked: Boolean) {
+        saveSoundPreference(isChecked)
+        binding.linearSuoneria.visibility = if (isChecked) View.VISIBLE else View.GONE
+        binding.playWistley.visibility = if (isChecked) View.VISIBLE else View.GONE
+    }
+
+    private fun handleVibrationSwitch(isChecked: Boolean) {
+        val vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
+        binding.intensitySeekBar.visibility = if (isChecked) View.VISIBLE else View.GONE
+
+        if (isChecked) {
+            val intensity = binding.intensitySeekBar.progress
+            vibrateWithIntensity(vibrator, intensity)
+        }
+    }
+
+    private fun handleNotificationSwitch(isChecked: Boolean) {
+        val switches = listOf(binding.switchobbiettivi, binding.switchsostenibilit, binding.switchmeteo)
+        switches.forEach { switch ->
+            switch.alpha = if (isChecked) 1.0f else 0.5f
+            switch.isChecked = isChecked
+            switch.visibility = if (isChecked) View.VISIBLE else View.GONE
+        }
+    }
+
+    private fun updateVibration(intensity: Int) {
+        if (binding.switchVivration.isChecked) {
+            val vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
+            vibrateWithIntensity(vibrator, intensity)
+        }
+    }
+
     private fun vibrateWithIntensity(vibrator: Vibrator, intensity: Int) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val vibrationEffect = VibrationEffect.createOneShot(
-                500L, // Durata della vibrazione in millisecondi
-                intensity // Intensità della vibrazione da 1 a 255
-            )
+            val vibrationEffect = VibrationEffect.createOneShot(500L, intensity)
             vibrator.vibrate(vibrationEffect)
         } else {
-            vibrator.vibrate(500L) // Compatibilità per vecchie versioni, intensità non supportata
+            vibrator.vibrate(500L)
         }
     }
 
@@ -55,159 +117,40 @@ class GeneraliActivity : AppCompatActivity() {
         with(sharedPref.edit()) {
             putBoolean("vibrationEnabled", isVibrationEnabled)
             putInt("vibrationIntensity", intensity)
-            apply() // Salva le preferenze
-        }
-
-        val sharedPref1 = getSharedPreferences("NotificationSettings", Context.MODE_PRIVATE)
-        with(sharedPref1.edit()) {
-            putBoolean("NotificationEnabled", isVibrationEnabled)
-            apply() // Salva le preferenze
+            apply()
         }
     }
 
-    // Metodo per salvare la preferenza dello stato del suono
     private fun saveSoundPreference(isSoundEnabled: Boolean) {
         val sharedPref = getSharedPreferences("SoundSettings", Context.MODE_PRIVATE)
         with(sharedPref.edit()) {
             putBoolean("soundEnabled", isSoundEnabled)
-            apply() // Salva la preferenza
+            apply()
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        // Rilascia il MediaPlayer quando l'activity viene distrutta
         mediaPlayer.release()
-        //unregisterReceiver(recreateReceiver) // Rimuovi il BroadcastReceiver
     }
 
     override fun onResume() {
         super.onResume()
+        restoreUIState()
+    }
 
-        // Recupera lo stato dello switch dal SharedPreferences
+    private fun restoreUIState() {
         val sharedPrefS = getSharedPreferences("SoundSettings", Context.MODE_PRIVATE)
         val isSoundEnabled = sharedPrefS.getBoolean("soundEnabled", true)
-        binding.switchsuono.isChecked = isSoundEnabled // Imposta lo stato iniziale
+        binding.switchsuono.isChecked = isSoundEnabled
 
-        // Registra il BroadcastReceiver
-        //registerReceiver(recreateReceiver, IntentFilter("com.example.seedapp.RECREATE_ALL_ACTIVITIES"))
-
-        // Recupera il testo del button selezionato dalle SharedPreferences
         val sharedPreferencesS = getSharedPreferences("SuoneriePrefs", Context.MODE_PRIVATE)
-        val selectedButtonText = sharedPreferencesS.getString("selected_button_text", "whistle")
+        binding.playWistley.text = sharedPreferencesS.getString("selected_button_text", "whistle")
 
-        // Inizializza il MediaPlayer con il file audio
         mediaPlayer = MediaPlayer.create(this, R.raw.whistle_notification_sound)
 
         val sharedPref = getSharedPreferences("VibrationSettings", Context.MODE_PRIVATE)
-        val isVibrationEnabled = sharedPref.getBoolean("vibrationEnabled", true)
-        val intensity = sharedPref.getInt("vibrationIntensity", 50)
-
-        val sharedPreferences = getSharedPreferences("NotificationSettings", Context.MODE_PRIVATE)
-        val isattivo = sharedPref.getBoolean("NotificationEnabled", true)
-
-
-
-        // Imposta il testo del button con quello selezionato
-        binding.playWistley.text = selectedButtonText
-
-
-        // Imposta lo stato iniziale di Switch e SeekBar
-        binding.switchVivration.isChecked = isVibrationEnabled
-        binding.intensitySeekBar.progress = intensity
-        binding.intensitySeekBar.visibility = if (isVibrationEnabled) View.VISIBLE else View.GONE
-
-
-
-
-        binding.switchobbiettivi.alpha = 0.5f
-        binding.switchsostenibilit.alpha = 0.5f
-        binding.switchmeteo.alpha = 0.5f
-
-        binding.switchobbiettivi.isActivated = false
-        binding.switchmeteo.isActivated = false
-        binding.switchsostenibilit.isActivated = false
-
-        val vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
-
-        // Esegue la vibrazione con l'intensità salvata (se attivo)
-        if (isVibrationEnabled) {
-            vibrateWithIntensity(vibrator,intensity)
-        }
-
-        binding.switchnotification.setOnCheckedChangeListener { _, isChecked ->
-
-            if (isChecked){
-                binding.switchobbiettivi.alpha = 1.0f
-                binding.switchsostenibilit.alpha = 1.0f
-                binding.switchmeteo.alpha = 1.0f
-
-                binding.switchobbiettivi.isChecked = isChecked
-                binding.switchmeteo.isChecked = isChecked
-                binding.switchsostenibilit.isChecked = isChecked
-
-                binding.switchobbiettivi.visibility = View.VISIBLE
-                binding.switchsostenibilit.visibility = View.VISIBLE
-                binding.switchmeteo.visibility = View.VISIBLE
-            }
-            else{
-                binding.switchobbiettivi.alpha = 0.5f
-                binding.switchsostenibilit.alpha = 0.5f
-                binding.switchmeteo.alpha = 0.5f
-
-                binding.switchobbiettivi.isChecked = isChecked
-                binding.switchmeteo.isChecked = isChecked
-                binding.switchsostenibilit.isChecked = isChecked
-
-                binding.switchobbiettivi.visibility = View.GONE
-                binding.switchsostenibilit.visibility = View.GONE
-                binding.switchmeteo.visibility = View.GONE
-            }
-        }
-
-
-        binding.switchsuono.setOnCheckedChangeListener { _, isChecked ->
-
-            saveSoundPreference(isChecked)
-            binding.linearSuoneria.visibility = if (isChecked) View.VISIBLE else View.GONE
-            binding.playWistley.visibility = if (isChecked) View.VISIBLE else View.GONE
-        }
-
-
-        binding.switchVivration.setOnCheckedChangeListener { _, isChecked ->
-            // Mostra o nasconde la SeekBar in base allo stato dello switch
-            binding.intensitySeekBar.visibility = if (isChecked) View.VISIBLE else View.GONE
-
-            // Esegue la vibrazione con l'intensità selezionata
-            if (isChecked) {
-                val intensity = binding.intensitySeekBar.progress
-                vibrateWithIntensity(vibrator, intensity)
-            }
-        }
-
-        binding.intensitySeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                // Aggiorna la vibrazione ogni volta che l'intensità cambia
-                if (binding.switchVivration.isChecked) {
-                    vibrateWithIntensity(vibrator, progress)
-                }
-            }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
-        })
-
-        binding.playWistley.setOnClickListener {
-
-            val intent = Intent(this, SuonerieActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.back.setOnClickListener {
-            onBackPressed();
-        }
-
-
-
+        binding.switchVivration.isChecked = sharedPref.getBoolean("vibrationEnabled", true)
+        binding.intensitySeekBar.progress = sharedPref.getInt("vibrationIntensity", 50)
     }
 }

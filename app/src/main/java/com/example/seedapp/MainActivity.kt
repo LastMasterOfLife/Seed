@@ -1,7 +1,12 @@
 package com.example.seedapp
 
+import android.content.Context
+import android.hardware.biometrics.BiometricManager
+import android.hardware.biometrics.BiometricPrompt
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.example.seedapp.databinding.ActivityMainBinding
 import com.example.seedapp.fragments.CommunityFragment
 import com.example.seedapp.fragments.HomeFragment
@@ -23,6 +28,17 @@ class MainActivity : AppCompatActivity() {
         // Inizializza LanguageManager e carica la lingua salvata
 
         setContentView(binding.root)
+
+        // Controlla se l'autenticazione biometrica è abilitata
+        val sharedPreferences = getSharedPreferences("biometric_prefs", Context.MODE_PRIVATE)
+        val biometricEnabled = sharedPreferences.getBoolean("biometric_enabled", false)
+
+        if (biometricEnabled) {
+            //showBiometricPrompt()
+        } else {
+            // Se l'autenticazione biometrica non è abilitata, apri direttamente la schermata principale
+            setContentView(R.layout.activity_main)
+        }
 
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
@@ -59,6 +75,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
 
     private fun applySavedLanguage() {
         val preferences = getSharedPreferences("app_preferences", MODE_PRIVATE)

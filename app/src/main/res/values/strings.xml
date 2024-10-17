@@ -57,6 +57,8 @@
     <string name="ita">italiano</string>
     <string name="eng">Inglese</string>
 
+    <string name="gen">Generali</string>
+
     <string name="Vibration">Vibrazione</string>
     <string name="obbiettivi">Notifiche obbiettivi</string>
     <string name="sostenib">Notifiche sostenibilità</string>
