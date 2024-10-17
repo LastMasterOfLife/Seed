@@ -1,5 +1,6 @@
 package com.example.seedapp
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,22 @@ class SicurezzaActivity : AppCompatActivity() {
         binding = ActivitySicurezzaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.pass.setOnClickListener {
+            val intent = Intent(this, PasswordActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.autoriz.setOnClickListener {
+
+        }
+
+        binding.elimdati.setOnClickListener {
+
+        }
+
+        binding.back.setOnClickListener {
+            onBackPressed()
+        }
 
 
     }
