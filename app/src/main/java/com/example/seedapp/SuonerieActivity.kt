@@ -24,7 +24,7 @@ class SuonerieActivity : AppCompatActivity() {
         val soundResources = listOf(R.raw.whistle_notification_sound, R.raw.bubble_notification, R.raw.facebook_notification_sound, R.raw.modern_soft_notification_sound)
 
         // Lista di testi per i pulsanti
-        val buttonTexts = listOf("Pulsante 1", "Pulsante 2", "Pulsante 3", "Pulsante 4")
+        val buttonTexts = listOf("Whistle", "Bubble", "Facebook", "modern soft")
 
         // Imposta RecyclerView con Adapter
         adapter = SuoneeriaAdapter(this, buttonTexts, soundResources)

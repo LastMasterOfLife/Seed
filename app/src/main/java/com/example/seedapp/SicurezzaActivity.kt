@@ -28,7 +28,8 @@ class SicurezzaActivity : AppCompatActivity() {
         }
 
         binding.elimdati.setOnClickListener {
-
+            val intent = Intent(this, EliminaDatiActivity::class.java)
+            startActivity(intent)
         }
 
         binding.back.setOnClickListener {

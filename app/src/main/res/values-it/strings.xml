@@ -112,13 +112,13 @@ Puoi gestire le autorizzazioni dell\'app in qualsiasi momento dalle impostazioni
     <string name="archiviazionesicura">Archiviazione sicura</string>
     <string name="descrizionePosizione">L\'app SEED richiede l\'accesso alla tua posizione per migliorare l\'esperienza utente e fornire funzionalità basate sulla localizzazione. In particolare: \n\n
 
-Aggiornamenti locali: La tua posizione ci consente di fornire aggiornamenti meteo e informazioni pertinenti alle tue attività in base alla tua area geografica.
+<b>Aggiornamenti locali </b> :  La tua posizione ci consente di fornire aggiornamenti meteo e informazioni pertinenti alle tue attività in base alla tua area geografica.
 Personalizzazione dell\'esperienza:
         Conoscendo la tua posizione, possiamo personalizzare i contenuti in modo che siano rilevanti per il tuo ambiente locale, supportando meglio il tuo percorso di crescita personale. \n\n
 Sicurezza dei dati:
         La tua posizione viene utilizzata esclusivamente all\'interno dell\'app per fornire queste funzionalità. Non condividiamo la tua posizione con terze parti senza il tuo consenso esplicito. Tutti i dati relativi alla posizione vengono trattati con protocolli di sicurezza per proteggerli da accessi non autorizzati. \n\n
 
-Cosa non facciamo \n\n
+Cosa non facciamo: \n\n
 Non monitoriamo costantemente la tua posizione in background senza motivo. \n\n
 Non vendiamo né condividiamo le informazioni sulla tua posizione per scopi commerciali. \n\n
 Puoi gestire le autorizzazioni per l\'accesso alla posizione in qualsiasi momento dalle impostazioni del tuo dispositivo.</string>
@@ -207,5 +207,15 @@ Non accediamo ai tuoi dati personali senza che tu lo richieda o senza che sia ne
 Puoi gestire l\'autorizzazione per l\'accesso all\'archiviazione sicura in qualsiasi momento dalle impostazioni del tuo dispositivo. Disabilitare questa autorizzazione potrebbe limitare l\'accesso a funzionalità che richiedono la protezione dei tuoi dati personali, ma l\'app continuerà a funzionare in modo limitato.
 
 </string>
+    <string name="descrizioneeliminadati">L\'eliminazione di tutti i dati comporta la rimozione completa delle informazioni salvate nell\'app SEED,
+        incluse le preferenze, i dati di geolocalizzazione, gli elementi preferiti, gli eventi nel calendario e le impostazioni personalizzate. \n
+        Questa azione è irreversibile e non può essere annullata. \n\n
+Cosa verrà eliminato: \n \n
+Tutte le preferenze salvate (ad esempio, lingua, suoni, notifiche). \n
+Dati relativi a posizioni e localizzazioni salvate.\n
+Eventuali dati di crescita personale e tracce di attività. \n
+Eventuali preferiti e liste personalizzate. \n\n
+
+Nota: I dati eliminati non potranno essere recuperati in seguito. Se desideri mantenere alcune informazioni, assicurati di eseguire un backup o esportarle prima di procedere.</string>
 
 </resources>

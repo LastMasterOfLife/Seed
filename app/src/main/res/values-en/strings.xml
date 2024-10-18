@@ -221,5 +221,16 @@ You can manage authorization for access to secure storage at any time from your 
 
 
 </string>
+    <string name="descrizioneeliminadati">Deleting all data results in the complete removal of information saved in the SEED app,
+        including preferences, geolocation data, favorite items, calendar events, and custom settings.
+        This action is irreversible and cannot be undone. \n\n
+What will be deleted: \n\n
+All saved preferences (e.g., language, sounds, notifications). \n
+Saved location and location data. \n
+Any personal growth data and activity tracks. \n
+Any personalized favorites and lists. \n\n
+
+Note: Deleted data cannot be retrieved later. If you wish to keep some information, be sure to back it up or export it before proceeding
+.</string>
 
 </resources>
