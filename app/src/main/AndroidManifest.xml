@@ -15,6 +15,12 @@
         android:theme="@style/Theme.SeedApp"
         tools:targetApi="31">
         <activity
+            android:name=".InfoAutorizzazioniActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AutorizzazioniActivity"
+            android:exported="false" />
+        <activity
             android:name=".ImprontaActivity"
             android:exported="false" />
         <activity

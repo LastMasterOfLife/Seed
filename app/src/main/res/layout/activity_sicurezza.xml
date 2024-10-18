@@ -35,7 +35,7 @@
                 android:layout_marginEnd="0dp"
                 android:padding="20dp"
                 android:paddingEnd="40dp"
-                android:text="Blocco schermo"
+                android:text="@string/shermo"
                 android:textSize="22dp"
                 android:textStyle="bold" />
 
@@ -51,7 +51,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="chiude l'app o richiede la ri-autenticazione dopo un periodo di inattività"
+                    android:text="@string/descrizioneshermo"
                     android:textColor="#000000"
                     android:textSize="18sp" />
 
@@ -65,7 +65,7 @@
                 android:layout_marginEnd="0dp"
                 android:padding="20dp"
                 android:paddingEnd="40dp"
-                android:text="Avviso accessi sospetti"
+                android:text="@string/accessosospetti"
                 android:textSize="22dp"
                 android:textStyle="bold" />
 
@@ -81,7 +81,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Attiva notifiche di avviso per accessi o attività sospette."
+                    android:text="@string/descrizionesospetti"
                     android:textColor="#000000"
                     android:textSize="18sp" />
 
@@ -114,7 +114,7 @@
                     android:textColor="@color/black"
                     android:paddingRight="70dp"
                     android:drawableRight="@drawable/right"
-                    android:text="Password" />
+                    android:text="@string/pass" />
 
 
             </LinearLayout>
@@ -136,7 +136,7 @@
                     android:textColor="@color/black"
                     android:paddingRight="70dp"
                     android:drawableRight="@drawable/right"
-                    android:text="Autirizzazioni" />
+                    android:text="@string/autorizzazion" />
 
 
             </LinearLayout>
@@ -158,7 +158,7 @@
                     android:textColor="@color/black"
                     android:paddingRight="70dp"
                     android:drawableRight="@drawable/right"
-                    android:text="Elimina dati" />
+                    android:text="@string/eliminazione" />
 
 
             </LinearLayout>

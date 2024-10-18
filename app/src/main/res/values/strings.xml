@@ -9,6 +9,9 @@
     <string name="privacy" translatable="false">Privacy</string>
     <string name="policy" translatable="false">Policy</string>
     <string name="community" translatable="false">Community</string>
+    <string name="pass" translatable="false">Password</string>
+    <string name="internet" translatable="false">Internet</string>
+
     <!-- Preference Titles -->
     <string name="messages_header" translatable="false">Messages</string>
     <string name="sync_header" translatable="false">Sync</string>
@@ -57,6 +60,10 @@
     <string name="ita">italiano</string>
     <string name="eng">Inglese</string>
 
+    <string name="shermo">Blocco schermo</string>
+    <string name="descrizioneshermo">chiude l\'app o richiede la ri-autenticazione
+        dopo un periodo di inattività</string>
+
     <string name="gen">Generali</string>
 
     <string name="Vibration">Vibrazione</string>
@@ -104,5 +111,124 @@ l\'uso dell\'app SEED è soggetto ai seguenti termini:
 Responsabilità: SEED non può essere ritenuta responsabile per eventuali danni diretti o indiretti derivanti dall\'uso dell\'applicazione.
 Modifiche: SEED si riserva il diritto di modificare questa policy. Ti informeremo di ogni aggiornamento tramite notifica o email.
 Se hai domande o desideri ulteriori informazioni, contattaci all\'indirizzo email supporto@seedapp.com.</string>
+
+    <string name="descrizioneInternet">L\'app SEED richiede l\'accesso a Internet per garantire il corretto funzionamento di alcune delle sue funzionalità chiave, tra cui:
+Aggiornamenti in tempo reale: L\'app si connette a Internet per fornire aggiornamenti meteo, notizie, e contenuti dinamici basati sulle attività dell\'utente.
+Integrazione con il database: Per salvare e sincronizzare i tuoi dati personali e di crescita con il nostro database, garantendo un\'esperienza personalizzata e coerente su tutti i dispositivi.
+Sezione community: Per permettere la partecipazione attiva nella community, con la possibilità di postare domande, risposte e ricevere notifiche sugli aggiornamenti.
+Sicurezza dei dati
+Tutti i dati trasmessi tramite la connessione Internet vengono criptati per garantire la sicurezza delle tue informazioni personali. Utilizziamo protocolli di sicurezza standard per proteggere i dati da accessi non autorizzati.
+
+Cosa non facciamo
+Non raccogliamo dati personali non necessari o sensibili senza il tuo esplicito consenso.
+Non vendiamo né condividiamo i tuoi dati a terze parti per scopi commerciali.
+Puoi gestire le autorizzazioni dell\'app in qualsiasi momento dalle impostazioni del tuo dispositivo.</string>
+    <string name="accessosospetti">Avviso accessi sospetti</string>
+    <string name="descrizionesospetti">Attiva notifiche di avviso per accessi o attività sospette</string>
+    <string name="autorizzazion">Autorizzazioni</string>
+    <string name="eliminazione">Elimina dati</string>
+    <string name="posizione">Posizione</string>
+    <string name="memoriainterna">Memoria</string>
+    <string name="calendario">Calendario</string>
+    <string name="audio" translatable="false">Audio</string>
+    <string name="contatti">Contatti</string>
+    <string name="archiviazionesicura">Archiviazione sicura</string>
+    <string name="descrizionePosizione">L\'app SEED richiede l\'accesso alla tua posizione per migliorare l\'esperienza utente e fornire funzionalità basate sulla localizzazione. In particolare: \n\n
+
+Aggiornamenti locali: La tua posizione ci consente di fornire aggiornamenti meteo e informazioni pertinenti alle tue attività in base alla tua area geografica.
+Personalizzazione dell\'esperienza:
+        Conoscendo la tua posizione, possiamo personalizzare i contenuti in modo che siano rilevanti per il tuo ambiente locale, supportando meglio il tuo percorso di crescita personale. \n\n
+Sicurezza dei dati:
+        La tua posizione viene utilizzata esclusivamente all\'interno dell\'app per fornire queste funzionalità. Non condividiamo la tua posizione con terze parti senza il tuo consenso esplicito. Tutti i dati relativi alla posizione vengono trattati con protocolli di sicurezza per proteggerli da accessi non autorizzati. \n\n
+
+Cosa non facciamo \n\n
+Non monitoriamo costantemente la tua posizione in background senza motivo. \n\n
+Non vendiamo né condividiamo le informazioni sulla tua posizione per scopi commerciali. \n\n
+Puoi gestire le autorizzazioni per l\'accesso alla posizione in qualsiasi momento dalle impostazioni del tuo dispositivo.</string>
+    <string name="descrizionememoria">L\'app SEED richiede l\'accesso alla memoria interna del dispositivo per poter salvare e gestire file e dati utili al corretto funzionamento dell\'app. Questo include: \n\n
+
+Salvataggio di contenuti personalizzati: L\'accesso alla memoria ci permette di salvare i dati e le impostazioni dell\'utente, come preferenze, immagini o file, garantendo che la tua esperienza rimanga personalizzata anche dopo la chiusura dell\'app. \n\n
+Funzionalità offline:
+        Alcuni contenuti o funzionalità dell\'app possono essere utilizzati anche senza connessione a Internet, grazie al salvataggio di file temporanei o dati importanti direttamente sul dispositivo. \n\n
+Sicurezza dei dati:
+        Tutti i file e i dati salvati nella memoria interna sono gestiti in conformità con gli standard di sicurezza, per garantire che non siano accessibili da altre applicazioni o soggetti non autorizzati. \n\n
+
+Cosa non facciamo  \n\n
+Non accediamo ai tuoi file personali senza una chiara necessità legata al funzionamento dell\'app. \n\n
+Non condividiamo né vendiamo i dati memorizzati sul dispositivo a terze parti per scopi commerciali. \n\n
+Puoi gestire le autorizzazioni per l\'accesso alla memoria interna in qualsiasi momento dalle impostazioni del tuo dispositivo.</string>
+    <string name="descrizionecalendario">L\'app SEED richiede l\'accesso al calendario del tuo dispositivo per offrire una serie di funzionalità che ti aiutano a gestire al meglio il tuo percorso di crescita personale e le tue attività quotidiane. In particolare: \n\n
+
+Sincronizzazione degli eventi: L\'accesso al calendario ci consente di aggiungere, modificare o visualizzare eventi direttamente dall\'app, rendendo facile la gestione dei tuoi obiettivi, attività e promemoria legati alla crescita personale. \n\n
+Promemoria personalizzati: Puoi impostare promemoria personalizzati per i tuoi obiettivi, attività o eventi direttamente nel calendario, garantendo che non perderai appuntamenti importanti o scadenze.
+Sicurezza dei dati
+        L\'app non accede a eventi o informazioni personali nel tuo calendario senza il tuo consenso esplicito. I dati relativi al calendario sono utilizzati solo per migliorare la tua esperienza nell\'app e non vengono condivisi con terze parti. Inoltre, seguiamo i protocolli di sicurezza standard per proteggere le tue informazioni. \n\n
+
+Cosa non facciamo \n\n
+Non modifichiamo o eliminiamo eventi nel tuo calendario senza il tuo permesso. \n\n
+Non accediamo a eventi che non sono rilevanti per le funzionalità dell\'app. \n\n
+Non vendiamo né condividiamo i dati del tuo calendario per scopi commerciali. \n\n
+Puoi gestire le autorizzazioni per l\'accesso al calendario in qualsiasi momento dalle impostazioni del tuo dispositivo.</string>
+    <string name="descrizionenotifice">L\'app SEED richiede l\'autorizzazione per inviarti notifiche al fine di migliorare la tua esperienza e aiutarti a rimanere aggiornato/a sulle attività importanti. In particolare, l\'accesso alle notifiche permette: \n\n
+
+Promemoria personalizzati: Ricevi notifiche per i tuoi obiettivi, attività di crescita personale o eventi programmati, assicurandoti di non dimenticare appuntamenti o scadenze.
+Aggiornamenti in tempo reale:
+        L\'app ti avvisa quando ci sono nuovi contenuti, aggiornamenti importanti o risposte nella sezione community, in modo che tu possa rimanere sempre informato/a. \n\n
+Notifiche motivazionali:
+        Ricevi messaggi di incoraggiamento e suggerimenti per mantenere alta la motivazione e sostenere il tuo percorso di crescita personale. \n\n
+Personalizzazione delle notifiche:
+        Puoi scegliere quali tipi di notifiche ricevere direttamente dalle impostazioni dell\'app, in modo da adattarle alle tue preferenze e necessità. \n\n
+
+Cosa non facciamo:\n\n
+Non inviamo notifiche non rilevanti o di natura commerciale senza il tuo consenso. \n\n
+Non utilizziamo le notifiche per raccogliere dati personali.\n\n
+Puoi gestire le autorizzazioni per le notifiche in qualsiasi momento dalle impostazioni del tuo dispositivo. Se decidi di disabilitare le notifiche, alcune funzionalità dell\'app potrebbero non essere completamente operative, ma potrai continuare a utilizzare l\'app senza problemi.</string>
+    <string name="descrizioneaudio">L\'app SEED richiede l\'autorizzazione per accedere all\'audio del tuo dispositivo per abilitare funzionalità legate al suono e al riconoscimento vocale. In particolare: \n\n
+
+Comandi vocali: L\'app utilizza il microfono per consentirti di interagire con alcune funzionalità tramite comandi vocali, rendendo l\'esperienza più fluida e intuitiva. \n\n
+Riproduzione di contenuti audio: Alcuni contenuti dell\'app, come meditazioni guidate, suoni ambientali o messaggi motivazionali, richiedono l\'accesso all\'audio per essere riprodotti.
+Funzionalità di registrazione:
+        Se l\'app include funzionalità che permettono la registrazione di messaggi vocali o l\'inserimento di note audio, l\'accesso al microfono sarà necessario per permetterti di registrare e salvare questi contenuti. \n\n
+Sicurezza dei dati
+        L\'app SEED utilizza il microfono e l\'audio solo per le funzionalità sopra descritte. Non registriamo né conserviamo il tuo audio senza il tuo consenso esplicito. Tutti i dati audio vengono gestiti in modo sicuro e non sono accessibili a terze parti senza il tuo permesso. \n\n
+
+Cosa non facciamo \n\n
+Non ascoltiamo o registriamo conversazioni in background senza il tuo consenso. \n\n
+Non condividiamo le registrazioni audio con terze parti a scopo commerciale. \n\n
+Puoi gestire le autorizzazioni per l\'accesso all\'audio in qualsiasi momento dalle impostazioni del tuo dispositivo. Se disabiliti l\'accesso all\'audio, alcune funzionalità dell\'app potrebbero non essere disponibili, ma potrai continuare a utilizzare l\'app senza problemi.
+
+</string>
+    <string name="descrizionecontatti">L\'app SEED richiede l\'autorizzazione per accedere ai contatti del tuo dispositivo per abilitare alcune funzionalità che migliorano la tua esperienza. In particolare, l\'accesso ai contatti consente: \n\n
+
+Condivisione facilitata:
+        L\'accesso ai contatti permette di condividere rapidamente contenuti dell\'app, come obiettivi, progressi o inviti alla community, con amici o familiari presenti nella tua rubrica. \n\n
+Collaborazione e crescita:
+        Se l\'app include funzionalità social o di crescita collettiva, l\'accesso ai contatti consente di connettersi e interagire più facilmente con altri utenti, migliorando l\'esperienza di apprendimento e sostegno reciproco. \n\n
+Sicurezza dei dati
+        L\'app SEED utilizza l\'accesso ai contatti solo per le finalità sopra descritte. Non raccogliamo, condividiamo o vendiamo informazioni sui tuoi contatti a terze parti senza il tuo esplicito consenso. I dati dei tuoi contatti sono trattati con protocolli di sicurezza e non vengono utilizzati per scopi non correlati al corretto funzionamento dell\'app. \n\n
+
+Cosa non facciamo: \n\n
+Non accediamo né memorizziamo i tuoi contatti senza che tu scelga di utilizzare una funzione che lo richieda. \n\n
+Non inviamo inviti o messaggi ai tuoi contatti senza il tuo consenso esplicito. \n\n
+Non condividiamo i dettagli dei tuoi contatti con terze parti a scopo commerciale. n\n\
+Puoi gestire l\'autorizzazione per l\'accesso ai contatti in qualsiasi momento dalle impostazioni del tuo dispositivo. Se scegli di disabilitare l\'accesso, alcune funzionalità che richiedono l\'interazione con i contatti potrebbero non essere disponibili, ma potrai continuare a utilizzare l\'app.</string>
+    <string name="descrizionearchiviazionesicura">L\'app SEED richiede l\'autorizzazione per accedere all\'archiviazione sicura del tuo dispositivo al fine di proteggere i tuoi dati personali e garantire la corretta gestione delle informazioni sensibili. In particolare, l\'accesso all\'archiviazione sicura consente: \n\n
+
+Conservazione protetta dei dati:
+        L\'app salva i dati sensibili, come le tue preferenze, i tuoi progressi e le impostazioni personali, in un\'area sicura del dispositivo, garantendo che siano protetti da accessi non autorizzati. \n\n
+Backup crittografati:
+        I dati importanti vengono crittografati e archiviati in modo sicuro per garantirti un ripristino sicuro in caso di necessità, come il passaggio a un nuovo dispositivo o il ripristino di dati persi. \n\n
+Autenticazione sicura:
+        L\'archiviazione sicura viene utilizzata per gestire le informazioni relative alla tua autenticazione (come token o chiavi di accesso), migliorando la sicurezza della tua identità all\'interno dell\'app. \n\n
+Sicurezza dei dati
+        L\'app SEED utilizza tecniche di crittografia avanzate per proteggere tutte le informazioni salvate nell\'archiviazione sicura. I tuoi dati non sono accessibili a terze parti o altre app senza il tuo esplicito consenso, e l\'accesso è limitato esclusivamente alle funzionalità che ne richiedono l\'uso. \n\n
+
+Cosa non facciamo: \n\n
+Non memorizziamo informazioni sensibili senza il tuo consenso. \n\n
+Non condividiamo i dati conservati nell\'archiviazione sicura con terze parti per scopi commerciali. \n\n
+Non accediamo ai tuoi dati personali senza che tu lo richieda o senza che sia necessario per le funzionalità dell\'app. \n\m
+Puoi gestire l\'autorizzazione per l\'accesso all\'archiviazione sicura in qualsiasi momento dalle impostazioni del tuo dispositivo. Disabilitare questa autorizzazione potrebbe limitare l\'accesso a funzionalità che richiedono la protezione dei tuoi dati personali, ma l\'app continuerà a funzionare in modo limitato.
+
+</string>
 
 </resources>

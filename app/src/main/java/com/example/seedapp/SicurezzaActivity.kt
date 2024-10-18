@@ -23,7 +23,8 @@ class SicurezzaActivity : AppCompatActivity() {
         }
 
         binding.autoriz.setOnClickListener {
-
+            val intent = Intent(this, AutorizzazioniActivity::class.java)
+            startActivity(intent)
         }
 
         binding.elimdati.setOnClickListener {
