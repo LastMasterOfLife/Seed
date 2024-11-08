@@ -27,6 +27,7 @@ import com.example.seedapp.fragments.SeedFragment
 import com.example.seedapp.fragments.SettingsFragment
 import com.example.seedapp.fragments.UserFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.button.MaterialButton
 import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
@@ -45,6 +46,15 @@ class MainActivity : AppCompatActivity() {
         // Inizializza LanguageManager e carica la lingua salvata
 
         setContentView(binding.root)
+/*
+        val backButton: MaterialButton = binding.back
+
+        backButton.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+
+
+ */
 
         // Controlla se è il primo accesso
         val sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE)

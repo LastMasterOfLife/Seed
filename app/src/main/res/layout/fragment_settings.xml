@@ -10,13 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/generali"
-            android:layout_width="294dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginEnd="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="16dp"
             android:background="@android:color/transparent"
             android:drawableRight="@drawable/right"
             android:drawablePadding="50dp"
@@ -29,13 +29,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/lingua"
-            android:layout_width="294dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="25dp"
-            android:layout_marginEnd="100dp"
+            android:layout_marginEnd="16dp"
             android:background="@android:color/transparent"
             android:drawableRight="@drawable/right"
             android:drawablePadding="50dp"
@@ -44,84 +44,84 @@
             android:textAlignment="textStart"
             android:textColor="@color/black"
             android:textSize="25sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/generali"
+            app:layout_constraintStart_toStartOf="@+id/generali"
             app:layout_constraintTop_toBottomOf="@+id/generali" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/privacy"
-            android:layout_width="294dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="textStart"
-            android:layout_marginStart="100dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="25dp"
-            android:layout_marginEnd="100dp"
+            android:layout_marginEnd="16dp"
             android:background="@android:color/transparent"
             android:drawableRight="@drawable/right"
             android:drawablePadding="50dp"
             android:padding="10dp"
             android:text="@string/privacy"
+            android:textAlignment="textStart"
             android:textColor="@color/black"
             android:textSize="25sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/generali"
+            app:layout_constraintStart_toStartOf="@+id/generali"
             app:layout_constraintTop_toBottomOf="@+id/lingua" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/policy"
-            android:layout_width="294dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="textStart"
-            android:layout_marginStart="100dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="25dp"
-            android:layout_marginEnd="100dp"
+            android:layout_marginEnd="16dp"
             android:background="@android:color/transparent"
             android:drawableRight="@drawable/right"
             android:drawablePadding="50dp"
             android:padding="10dp"
             android:text="@string/policy"
+            android:textAlignment="textStart"
             android:textColor="@color/black"
             android:textSize="25sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/generali"
+            app:layout_constraintStart_toStartOf="@+id/generali"
             app:layout_constraintTop_toBottomOf="@+id/privacy" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/sicurezza"
-            android:layout_width="294dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="25dp"
-            android:textAlignment="textStart"
-            android:layout_marginEnd="100dp"
+            android:layout_marginEnd="16dp"
             android:background="@android:color/transparent"
             android:drawableRight="@drawable/right"
             android:drawablePadding="50dp"
             android:padding="10dp"
             android:text="@string/sicurezza"
+            android:textAlignment="textStart"
             android:textColor="@color/black"
             android:textSize="25sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/generali"
+            app:layout_constraintStart_toStartOf="@+id/generali"
             app:layout_constraintTop_toBottomOf="@+id/policy" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/community"
-            android:layout_width="294dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="textStart"
-            android:layout_marginStart="100dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="25dp"
-            android:layout_marginEnd="100dp"
+            android:layout_marginEnd="16dp"
             android:background="@android:color/transparent"
             android:drawableRight="@drawable/right"
             android:drawablePadding="50dp"
             android:padding="10dp"
             android:text="@string/community"
+            android:textAlignment="textStart"
             android:textColor="@color/black"
             android:textSize="25sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/generali"
+            app:layout_constraintStart_toStartOf="@+id/generali"
             app:layout_constraintTop_toBottomOf="@+id/sicurezza" />
 
 
