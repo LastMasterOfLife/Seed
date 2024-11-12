@@ -2,13 +2,17 @@ package com.example.seedapp.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.seedapp.R
 import com.google.android.material.internal.ViewUtils.showKeyboard
@@ -46,16 +50,16 @@ class CommunityFragment : Fragment() {
 
         val likeIcon: ImageView? = view.findViewById(R.id.likeIcon)
         val replyIcon: ImageView = view.findViewById(R.id.reply_icon)
-        val textView: TextView = view.findViewById(R.id.textView3)
-        val hiddenEditText: EditText = view.findViewById(R.id.hiddenEditText)
-        val replyIcon2: ImageView = view.findViewById(R.id.reply_icon2)
-        val likeIcon2: ImageView? = view.findViewById(R.id.like_icon2)
+        val replyTextView: TextView = view.findViewById(R.id.replyTextView)
+        val replyEditText: EditText = view.findViewById(R.id.replyEditText)
+        val replyContainer: LinearLayout = view.findViewById(R.id.replyContainer)
+
 
 
 
 // Inizializza le icone con l'immagine vuota
         likeIcon?.setImageResource(R.drawable.like_icon)  // icona vuota
-        likeIcon2?.setImageResource(R.drawable.like_icon) // icona vuota
+
 
 // Click listener per la prima icona
         likeIcon?.setOnClickListener {
@@ -66,31 +70,43 @@ class CommunityFragment : Fragment() {
                 likeIcon.setImageResource(R.drawable.like_icon)   // icona vuota
             }
         }
+
+
+
+        // Click listener per la reply icon
         replyIcon.setOnClickListener {
-            showKeyboardAndAddText(hiddenEditText, textView)
+            // Mostra il layout del contenitore con EditText e profilo
+            replyContainer.visibility = View.VISIBLE
+            replyEditText.requestFocus()
+
+            // Mostra la tastiera
+            val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.showSoftInput(replyEditText, InputMethodManager.SHOW_IMPLICIT)
         }
 
-// Click listener per la seconda icona
-        likeIcon2?.setOnClickListener {
-            isLiked2 = !isLiked2
-            if (isLiked2) {
-                likeIcon2.setImageResource(R.drawable.like_icon2) // icona colorata/piena
+        // Listener per l'EditText: nasconde il layout al clic su "Done"
+        replyEditText.setOnEditorActionListener { v, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                // Imposta il testo di risposta su TextView
+                replyTextView.text = replyEditText.text.toString()
+
+                // Nasconde la tastiera
+                val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(v.windowToken, 0)
+
+                // Nasconde il layout di risposta
+                replyContainer.visibility = View.GONE
+
+                // Pulisce l'EditText
+                replyEditText.text.clear()
+
+                true
             } else {
-                likeIcon2.setImageResource(R.drawable.like_icon)  // icona vuota
+                false
             }
         }
 
         return view
-    }
-    private fun showKeyboardAndAddText(editText: EditText, textView: TextView) {
-        // Mostra la tastiera usando l'EditText nascosto
-        editText.visibility = View.VISIBLE
-        editText.requestFocus()
-        val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT)
-
-        // Aggiorna il testo della TextView
-        textView.text = editText.text.toString()
     }
 
 
