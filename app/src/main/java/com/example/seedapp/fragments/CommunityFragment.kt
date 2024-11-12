@@ -1,11 +1,21 @@
 package com.example.seedapp.fragments
 
+import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import com.example.seedapp.R
+import com.google.android.material.internal.ViewUtils.showKeyboard
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,11 +44,73 @@ class CommunityFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_community, container, false)
+        var isLiked = false
+        var isLiked2 = false
+        val view = inflater.inflate(R.layout.fragment_community, container, false)
+
+        val likeIcon: ImageView? = view.findViewById(R.id.likeIcon)
+        val replyIcon: ImageView = view.findViewById(R.id.reply_icon)
+        val replyTextView: TextView = view.findViewById(R.id.replyTextView)
+        val replyEditText: EditText = view.findViewById(R.id.replyEditText)
+        val replyContainer: LinearLayout = view.findViewById(R.id.replyContainer)
+
+
+
+
+// Inizializza le icone con l'immagine vuota
+        likeIcon?.setImageResource(R.drawable.like_icon)  // icona vuota
+
+
+// Click listener per la prima icona
+        likeIcon?.setOnClickListener {
+            isLiked = !isLiked
+            if (isLiked) {
+                likeIcon.setImageResource(R.drawable.like_icon2)  // icona colorata/piena
+            } else {
+                likeIcon.setImageResource(R.drawable.like_icon)   // icona vuota
+            }
+        }
+
+
+
+        // Click listener per la reply icon
+        replyIcon.setOnClickListener {
+            // Mostra il layout del contenitore con EditText e profilo
+            replyContainer.visibility = View.VISIBLE
+            replyEditText.requestFocus()
+
+            // Mostra la tastiera
+            val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.showSoftInput(replyEditText, InputMethodManager.SHOW_IMPLICIT)
+        }
+
+        // Listener per l'EditText: nasconde il layout al clic su "Done"
+        replyEditText.setOnEditorActionListener { v, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                // Imposta il testo di risposta su TextView
+                replyTextView.text = replyEditText.text.toString()
+
+                // Nasconde la tastiera
+                val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(v.windowToken, 0)
+
+                // Nasconde il layout di risposta
+                replyContainer.visibility = View.GONE
+
+                // Pulisce l'EditText
+                replyEditText.text.clear()
+
+                true
+            } else {
+                false
+            }
+        }
+
+        return view
     }
 
-    companion object {
+
+        companion object {
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
@@ -56,5 +128,6 @@ class CommunityFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
-    }
-}
+            }
+        }
+

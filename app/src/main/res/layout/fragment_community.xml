@@ -1,49 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.CommunityFragment"
     android:background="@color/secondary">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+        <!-- Main background card -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/topGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.25" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <View
+            android:id="@+id/backgroundView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="@dimen/margin_medium"
+            android:background="@drawable/border"
+            android:backgroundTint="@color/background"
+            app:layout_constraintTop_toTopOf="@id/topGuideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.35" />
 
-            <View
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="190dp"
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="@string/message"
+            android:textSize="18sp"
+            android:ellipsize="end"
+            android:maxLines="5"
+            android:padding="@dimen/padding_large"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="18sp"
+            android:autoSizeStepGranularity="2sp"
+            app:layout_constraintBottom_toBottomOf="@id/backgroundView"
+            app:layout_constraintEnd_toEndOf="@id/backgroundView"
+            app:layout_constraintStart_toStartOf="@id/backgroundView"
+            app:layout_constraintTop_toBottomOf="@id/baki_hanma_icon"
+            android:layout_marginTop="@dimen/margin_small" />
 
-                android:id="@+id/backgroundView"
-                android:layout_width="0dp"
-                android:layout_height="200dp"
-                android:background="@color/background"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+        <!-- User info section -->
+        <ImageView
+            android:id="@+id/baki_hanma_icon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_medium"
+            android:adjustViewBounds="true"
+            app:layout_constraintWidth_percent="0.12"
+            android:src="@drawable/baki_hanma"
+            app:layout_constraintStart_toStartOf="@id/backgroundView"
+            app:layout_constraintTop_toTopOf="@id/backgroundView" />
 
-            <TextView
+        <TextView
+            android:id="@+id/nameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/nome_utente"
+            android:textColorHint="@color/black"
+            android:layout_marginStart="@dimen/margin_medium"
+            app:layout_constraintStart_toEndOf="@id/baki_hanma_icon"
+            app:layout_constraintTop_toTopOf="@id/baki_hanma_icon"
+            app:layout_constraintBottom_toBottomOf="@id/baki_hanma_icon" />
+
+        <!-- Interaction buttons -->
+        <LinearLayout
+            android:id="@+id/interactionLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@id/backgroundView"
+            app:layout_constraintTop_toBottomOf="@id/textView">
+
+            <ImageView
+                android:id="@+id/likeIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/message"
-                android:textSize="18sp"
-                app:layout_constraintTop_toTopOf="@id/backgroundView"
-                app:layout_constraintBottom_toBottomOf="@id/backgroundView"
-                app:layout_constraintStart_toStartOf="@id/backgroundView"
-                app:layout_constraintEnd_toEndOf="@id/backgroundView" />
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/like_icon" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/reply_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_large"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/reply_icon" />
 
+        </LinearLayout>
 
+        <!-- Contenitore nascosto per EditText e messaggio -->
+        <LinearLayout
+            android:id="@+id/replyContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/margin_medium"
+            app:layout_constraintStart_toStartOf="@id/backgroundView"
+            app:layout_constraintEnd_toEndOf="@id/backgroundView"
+            app:layout_constraintTop_toBottomOf="@id/interactionLayout">
 
+            <!-- Immagine profilo -->
+            <ImageView
+                android:id="@+id/profileImage"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ohma_tokita"
+                android:layout_marginEnd="10dp" />
+            <View
+                android:id="@+id/backgroundView2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="@dimen/margin_medium"
+                android:background="@drawable/border"
+                android:backgroundTint="@color/background"
+                />
 
+            <!-- EditText per risposta -->
+            <EditText
+                android:id="@+id/replyEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Scrivi una risposta..."
+                android:imeOptions="actionDone"
+                android:inputType="textMultiLine"
+                android:maxLines="3"
+                android:padding="10dp"
+                android:textSize="16sp" />
+        </LinearLayout>
 
+        <!-- TextView per visualizzare il messaggio inviato -->
+        <TextView
+            android:id="@+id/replyTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_medium"
+            android:textSize="16sp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@id/backgroundView"
+            app:layout_constraintEnd_toEndOf="@id/backgroundView"
+            app:layout_constraintTop_toBottomOf="@id/replyContainer" />
 
-
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
