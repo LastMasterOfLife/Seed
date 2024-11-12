@@ -10,11 +10,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.seedapp.R
+
 import com.google.android.material.internal.ViewUtils.showKeyboard
 
 // TODO: Rename parameter arguments, choose names that match
@@ -47,12 +49,13 @@ class CommunityFragment : Fragment() {
         var isLiked = false
         var isLiked2 = false
         val view = inflater.inflate(R.layout.fragment_community, container, false)
-
+        val sendButton: Button = view.findViewById(R.id.sendButton)
         val likeIcon: ImageView? = view.findViewById(R.id.likeIcon)
         val replyIcon: ImageView = view.findViewById(R.id.reply_icon)
         val replyTextView: TextView = view.findViewById(R.id.replyTextView)
         val replyEditText: EditText = view.findViewById(R.id.replyEditText)
         val replyContainer: LinearLayout = view.findViewById(R.id.replyContainer)
+        val repliesContainer: LinearLayout = view.findViewById(R.id.repliesContainer)
 
 
 
@@ -85,25 +88,28 @@ class CommunityFragment : Fragment() {
         }
 
         // Listener per l'EditText: nasconde il layout al clic su "Done"
-        replyEditText.setOnEditorActionListener { v, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                // Imposta il testo di risposta su TextView
-                replyTextView.text = replyEditText.text.toString()
+        // Click listener per il bottone di invio
+        sendButton.setOnClickListener {
+            val userText = replyEditText.text.toString()
 
-                // Nasconde la tastiera
-                val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm.hideSoftInputFromWindow(v.windowToken, 0)
+            // Crea un nuovo layout per mostrare l'immagine profilo e il testo
+            val replyView = LayoutInflater.from(requireContext()).inflate(R.layout.reply_item, repliesContainer, false)
 
-                // Nasconde il layout di risposta
-                replyContainer.visibility = View.GONE
+            val ohmaIcon: ImageView = replyView.findViewById(R.id.ohmaIcon)
+            val replyTextView: TextView = replyView.findViewById(R.id.replyTextView)
 
-                // Pulisce l'EditText
-                replyEditText.text.clear()
+            // Imposta il testo e l'immagine del profilo (usa l'immagine di profilo desiderata)
+            replyTextView.text = userText
+            ohmaIcon.setImageResource(R.drawable.ohma_tokita)  // Sostituisci con l'immagine del profilo desiderata
 
-                true
-            } else {
-                false
-            }
+            // Aggiungi la nuova vista di risposta a repliesContainer
+            repliesContainer.addView(replyView)
+
+            // Nascondi la tastiera e pulisci l'EditText
+            val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+            replyEditText.text.clear()
+            replyContainer.visibility = View.GONE
         }
 
         return view
