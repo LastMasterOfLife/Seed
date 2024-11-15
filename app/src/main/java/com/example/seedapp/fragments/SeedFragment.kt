@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.seedapp.Data.TreeView
 import com.example.seedapp.R
+import com.example.seedapp.databinding.FragmentSeedBinding
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.random.Random
@@ -36,6 +37,7 @@ class SeedFragment : Fragment() {
      */
 
     private lateinit var treeView: TreeView
+    lateinit var binding: FragmentSeedBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

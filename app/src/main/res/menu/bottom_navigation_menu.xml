@@ -7,7 +7,7 @@
         android:icon="@drawable/community_icon"
         android:title="Community" />
     <item
-        android:id="@+id/game"
+        android:id="@+id/goals"
         android:enabled="true"
         android:icon="@drawable/target"
         android:title="Goals" />

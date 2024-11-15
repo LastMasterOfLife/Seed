@@ -1,6 +1,5 @@
 package com.example.seedapp
 
-import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.Manifest.permission.POST_NOTIFICATIONS
 import android.Manifest.permission.READ_CALENDAR
@@ -10,24 +9,19 @@ import android.Manifest.permission.RECORD_AUDIO
 import android.Manifest.permission.WRITE_CALENDAR
 import android.Manifest.permission.WRITE_CONTACTS
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-import android.content.Context
 import android.content.pm.PackageManager
-import android.hardware.biometrics.BiometricManager
-import android.hardware.biometrics.BiometricPrompt
 import android.os.Build
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.seedapp.databinding.ActivityMainBinding
 import com.example.seedapp.fragments.CommunityFragment
-import com.example.seedapp.fragments.HomeFragment
+import com.example.seedapp.fragments.GoalsFragment
 import com.example.seedapp.fragments.SeedFragment
 import com.example.seedapp.fragments.SettingsFragment
 import com.example.seedapp.fragments.UserFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.button.MaterialButton
 import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
@@ -76,12 +70,13 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.game -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.container, HomeFragment()).commit()
-                    true
-                }
+
                 R.id.community -> {
                     supportFragmentManager.beginTransaction().replace(R.id.container, CommunityFragment()).commit()
+                    true
+                }
+                R.id.goals -> {
+                    supportFragmentManager.beginTransaction().replace(R.id.container, GoalsFragment()).commit()
                     true
                 }
                 R.id.seed -> {
