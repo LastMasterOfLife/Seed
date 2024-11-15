@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.SeedApp" parent="Theme.Material3.DayNight">
+    <style name="Base.Theme.SeedApp" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary">#6B8F24</item>
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
