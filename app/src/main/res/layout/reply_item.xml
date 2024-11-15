@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <!-- res/layout/reply_item.xml -->
+
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
 
@@ -14,12 +15,16 @@
 
         <ImageView
             android:id="@+id/ohmaIcon"
+            android:layout_marginStart="50dp"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ohma_tokita" />
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ohma_tokita"
+            />
 
         <TextView
             android:id="@+id/replyTextView"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
