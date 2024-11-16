@@ -85,7 +85,7 @@ class TreeView @JvmOverloads constructor(
 
     // Aggiungi nella classe TreeView
     private val nodePaint = Paint().apply {
-        color = Color.BLUE // Colore del nodo
+        color = Color.rgb(49,156,115) // Colore del nodo
         style = Paint.Style.FILL
         isAntiAlias = true
     }
