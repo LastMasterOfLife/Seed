@@ -16,10 +16,10 @@
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/windowBackground"
+        android:background="@color/quaternario"
         app:menu="@menu/bottom_navigation_menu"
         app:itemTextColor="@color/black"
-        app:itemIconTint="@color/primary"
+        app:itemIconTint="@color/tertiary"
         app:labelVisibilityMode="labeled"/>
 
 

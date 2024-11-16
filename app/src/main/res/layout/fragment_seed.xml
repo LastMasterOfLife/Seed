@@ -27,8 +27,8 @@
             <com.example.seedapp.Data.TreeView
                 android:id="@+id/treeView"
                 android:layout_width="match_parent"
-                android:layout_height="598dp"
-                android:background="@color/white" />
+                android:layout_height="660dp"
+                android:background="@drawable/sfondo_seed" />
 
 
         </LinearLayout>
@@ -40,6 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
         android:layout_margin="16dp"
+        android:layout_marginBottom="30dp"
         android:text="Aggiungi Ramo"
         app:layout_constraintBottom_toBottomOf="@+id/scrollView"
         app:layout_constraintEnd_toEndOf="parent"
