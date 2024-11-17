@@ -24,7 +24,7 @@ class GoalsFragment : Fragment() {
 
         val add = binding.addBranchButton
         add.setOnClickListener {
-           val treeView = (parentFragmentManager.findFragmentById(R.id.main) as? SeedFragment)?.binding?.treeView?.drawInitialNode()
+           val treeView = (parentFragmentManager.findFragmentById(R.id.main) as? SeedFragment)?.binding?.treeView?.incrementBranchLength()
         }
 
         return binding.root
