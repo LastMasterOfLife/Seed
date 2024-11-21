@@ -24,20 +24,20 @@
                     app:layout_constraintHorizontal_bias="0.444"
                     app:layout_constraintStaoStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+ -->
 
-
-                <ImageView
-                    android:id="@+id/loading_image"
-                    android:layout_width="377dp"
-                    android:layout_height="341dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="19dp"
-                    android:layout_marginEnd="10dp"
-                    android:src="@drawable/albero_pianeta"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView" />
-                -->
+        <ImageView
+            android:id="@+id/loading_image"
+            android:layout_width="377dp"
+            android:layout_height="341dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="156dp"
+            android:src="@drawable/pianta_load"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

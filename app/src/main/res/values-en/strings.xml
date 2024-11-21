@@ -232,5 +232,12 @@ Any personalized favorites and lists. \n\n
 
 Note: Deleted data cannot be retrieved later. If you wish to keep some information, be sure to back it up or export it before proceeding
 .</string>
+    <string name="nomeUtente">Name User</string>
+    <string name="bio">AMIN my love</string>
+    <string name="obbiet">Goals</string>
+    <string name="listaObiettivi">Neque porro quisquam est qui dolorem ...(inglese)</string>
+    <string name="modProf">Change Profile</string>
+    <string name="condiprof">Sheare Profile</string>
+    <string name="Use">User</string>
 
 </resources>

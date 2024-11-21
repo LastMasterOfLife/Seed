@@ -240,5 +240,12 @@ Eventuali dati di crescita personale e tracce di attività. \n
 Eventuali preferiti e liste personalizzate. \n\n
 
 Nota: I dati eliminati non potranno essere recuperati in seguito. Se desideri mantenere alcune informazioni, assicurati di eseguire un backup o esportarle prima di procedere.</string>
+    <string name="nomeUtente">Nome Utente</string>
+    <string name="bio">Sono Bello , son Felice ,AMIN il mio amore</string>
+    <string name="obbiet">Obbiettivi</string>
+    <string name="listaObiettivi">Neque porro quisquam est qui dolorem ...</string>
+    <string name="modProf">Modifica Profilo</string>
+    <string name="condiprof">Condividi Profilo</string>
+    <string name="Use">User</string>
 
 </resources>

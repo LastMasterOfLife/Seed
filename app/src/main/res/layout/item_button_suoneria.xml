@@ -7,14 +7,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#DBDBDB"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
             android:id="@+id/playWistley"
-            android:layout_width="354dp"
+            android:layout_width="309dp"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:padding="10dp"

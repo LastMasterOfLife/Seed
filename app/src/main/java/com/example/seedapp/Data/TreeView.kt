@@ -9,6 +9,8 @@ import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import android.view.View
 import android.animation.ValueAnimator
+import android.graphics.PointF
+import android.util.Log
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -19,10 +21,14 @@ class TreeView @JvmOverloads constructor(
 ) : View(context, attrs, defStyleAttr) {
 
     private var branchCounter = 0 // Contatore per ID univoci dei rami
+    private var branchnumber =0
     private val branchMap = mutableMapOf<Int, Branch>() // Mappa per i rami
 
+    private var leafcount = 0
+    private val leafPositions = mutableListOf<PointF>()  // Supponiamo che tu abbia una lista di posizioni delle foglie
+
     data class Branch(
-        val id: Int,
+        val id: Int = 0,
         val startX: Float,
         val startY: Float,
         val endX: Float,
@@ -30,8 +36,23 @@ class TreeView @JvmOverloads constructor(
         var leafCounter: Int = 0 // Contatore foglie univoco per ogni ramo
     )
 
+    private fun resetTree() {
+        branchMap.clear()
+        branchCounter = 0
+        //branchLength = 0f
+        shouldDrawBranches = false
+        invalidate()
+    }
+
+    private val Trunkpaint = Paint().apply {
+        color = Color.rgb(101, 67, 33) // Marrone per tronco e rami
+        //color = Color.TRANSPARENT
+        isAntiAlias = true
+    }
+
     private val paint = Paint().apply {
         color = Color.rgb(101, 67, 33) // Marrone per tronco e rami
+        //color = Color.TRANSPARENT
         isAntiAlias = true
     }
 
@@ -57,9 +78,13 @@ class TreeView @JvmOverloads constructor(
         style = Paint.Style.FILL
     }
 
+    private fun addLeafPosition(x: Float, y: Float) {
+        leafPositions.add(PointF(x, y))
+    }
+
     private val textPaint = Paint().apply {
         color = Color.BLACK
-        textSize = 30f
+        textSize = 20f
         isAntiAlias = true
     }
 
@@ -77,6 +102,9 @@ class TreeView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         canvas.save()
+
+        leafcount = 0
+        leafPositions.clear()
 
         // Applica trasformazioni di zoom e traslazione
         canvas.translate(translationX, translationY)
@@ -96,19 +124,24 @@ class TreeView @JvmOverloads constructor(
             val segmentEndY = startY - ((i + 1) * (trunkHeight / trunkSegments))
 
             // Calcola la larghezza per ogni segmento
-            paint.strokeWidth = bottomWidth - i * ((bottomWidth - topWidth) / trunkSegments)
+            Trunkpaint.strokeWidth = bottomWidth - i * ((bottomWidth - topWidth) / trunkSegments)
 
             // Disegna il segmento
-            canvas.drawLine(startX, segmentStartY, startX, segmentEndY, paint)
+            canvas.drawLine(startX, segmentStartY, startX, segmentEndY, Trunkpaint)
         }
 
-        // Disegna il ramo principale se abilitato
+        // Posizione del primo ramo subito sopra il tronco
+        val branchStartX = startX
+        val branchStartY = startY - trunkHeight // Subito sopra il tronco
+
+        // Disegna il primo ramo
         if (shouldDrawBranches) {
-            drawBranch(canvas, startX, startY - trunkHeight, -90.0, branchLength)
+            drawBranch(canvas, branchStartX, branchStartY, -90.0, branchLength) // Primo ramo
         }
 
         canvas.restore()
     }
+
 
     private fun drawBranch(canvas: Canvas, x1: Float, y1: Float, angle: Double, length: Float) {
         if (length < 10) return // Stop se il ramo è troppo corto
@@ -122,6 +155,12 @@ class TreeView @JvmOverloads constructor(
         val branch = Branch(branchId, x1, y1, x2, y2)
         branchMap[branchId] = branch
 
+
+        //branchnumber =+ branch.id-(branch.id/2)-((branch.id/2)-branchnumber++)
+        branchnumber = leafcount
+
+        //branchCounter = branchId
+
         // Disegna il ramo
         paint.strokeWidth = branchWidth
         canvas.drawLine(x1, y1, x2, y2, paint)
@@ -134,7 +173,10 @@ class TreeView @JvmOverloads constructor(
     }
 
     private fun drawLeaves(canvas: Canvas, x: Float, y: Float, branch: Branch) {
-        branch.leafCounter++ // Incrementa il contatore delle foglie per il ramo corrente
+        //branch.leafCounter++ // Incrementa il contatore delle foglie per il ramo corrente
+        leafcount++
+
+
 
         // Disegna una foglia come un ovale
         canvas.drawOval(
@@ -142,12 +184,20 @@ class TreeView @JvmOverloads constructor(
             x + 15f, y + 10f,
             leafPaint
         )
+        addLeafPosition(x, y)
+
 
         // Disegna il numero univoco della foglia accanto ad essa
         canvas.drawText(
-            "",
+            "n° ${leafcount}",
             x + 20f, y, textPaint
         )
+
+
+
+        Log.d("TreeView", "Leaf counter: $leafcount, Leaf positions: ${leafPositions.size}")
+
+
     }
 
     private fun drawSubBranches(canvas: Canvas, x1: Float, y1: Float, angle: Double, length: Float, parentBranch: Branch) {
@@ -164,9 +214,11 @@ class TreeView @JvmOverloads constructor(
 
     // Metodo pubblico per incrementare la lunghezza del ramo
     fun incrementBranchLength() {
+        resetTree()
         branchLength += incrementValue
         shouldDrawBranches = true
         startBranchAnimation()
+        Log.d("foglie", "Foglie totali: $leafcount")
     }
 
     private fun startBranchAnimation() {
