@@ -57,7 +57,7 @@ class TreeView @JvmOverloads constructor(
     }
 
     private var branchLength = 0f // Lunghezza attuale del ramo
-    private val incrementValue = 150f // Valore da incrementare ad ogni clic sul pulsante
+    private val incrementValue = 70f // Valore da incrementare ad ogni clic sul pulsante
     private var shouldDrawBranches = false // Variabile per controllare il disegno dei rami
 
     // Variabili per lo zoom e trascinamento
@@ -176,8 +176,6 @@ class TreeView @JvmOverloads constructor(
         //branch.leafCounter++ // Incrementa il contatore delle foglie per il ramo corrente
         leafcount++
 
-
-
         // Disegna una foglia come un ovale
         canvas.drawOval(
             x - 15f, y - 10f,
@@ -187,11 +185,14 @@ class TreeView @JvmOverloads constructor(
         addLeafPosition(x, y)
 
 
+        /*
         // Disegna il numero univoco della foglia accanto ad essa
         canvas.drawText(
             "n° ${leafcount}",
             x + 20f, y, textPaint
         )
+
+         */
 
 
 
