@@ -8,24 +8,25 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <ImageView
         android:id="@+id/ImgProfilo"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="30dp"
-        android:src="@drawable/baki_hanma"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="52dp"
         android:background="@android:color/transparent"
+        android:src="@drawable/baki_hanma"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/modUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="104dp"
+        android:layout_marginTop="176dp"
+        android:layout_marginEnd="128dp"
         android:background="@android:color/transparent"
         android:src="@drawable/edit_icon"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,11 +49,11 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/rouded_border"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintHorizontal_bias="0.546"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username">
 
@@ -67,7 +68,7 @@
             android:text="34#g56#87"
             android:textColor="@color/tertiary"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/frameLayout"
+            app:layout_constraintEnd_toStartOf="@+id/linkbtn"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -94,21 +95,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:text="@string/bio"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CodId" />
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/obiettivi"
-        android:layout_width="348dp"
-        android:layout_height="276dp"
+        android:layout_width="match_parent"
+        android:layout_height="346dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/border"
@@ -134,7 +134,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listaOb"
             android:layout_width="match_parent"
-            android:layout_height="223dp"
+            android:layout_height="280dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
