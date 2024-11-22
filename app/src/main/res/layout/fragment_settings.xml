@@ -4,127 +4,167 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/sfondo_seed"
     tools:context=".fragments.SettingsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/sfondo_seed">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/generali"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayoutGenerale"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginEnd="16dp"
-            android:background="@android:color/transparent"
-            android:drawableRight="@drawable/right"
-            android:drawablePadding="50dp"
-            android:padding="10dp"
-            android:text="@string/gen"
-            android:textAlignment="textStart"
-            android:textColor="@color/black"
-            android:textSize="25sp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="52dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/border"
+            android:backgroundTint="@color/background"
+            android:elevation="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/generali"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_margin="16dp"
+                android:background="@android:color/transparent"
+                android:drawableRight="@drawable/right"
+                android:drawablePadding="50dp"
+                android:padding="10dp"
+                android:text="@string/gen"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/lingua"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@android:color/transparent"
+                android:drawableRight="@drawable/right"
+                android:drawablePadding="50dp"
+                android:padding="10dp"
+                android:text="@string/lingua"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/generali" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayoutPrivacy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/border"
+            android:backgroundTint="@color/background"
+            android:elevation="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayoutGenerale">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/lingua"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/privacy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@android:color/transparent"
+                android:drawableRight="@drawable/right"
+                android:drawablePadding="50dp"
+                android:padding="10dp"
+                android:text="@string/privacy"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/policy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@android:color/transparent"
+                android:drawableRight="@drawable/right"
+                android:drawablePadding="50dp"
+                android:padding="10dp"
+                android:text="@string/policy"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/privacy" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Sezione Sicurezza e Community -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayoutSicurezza"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="16dp"
-            android:background="@android:color/transparent"
-            android:drawableRight="@drawable/right"
-            android:drawablePadding="50dp"
-            android:padding="10dp"
-            android:text="@string/lingua"
-            android:textAlignment="textStart"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            app:layout_constraintEnd_toEndOf="@+id/generali"
-            app:layout_constraintStart_toStartOf="@+id/generali"
-            app:layout_constraintTop_toBottomOf="@+id/generali" />
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/border"
+            android:backgroundTint="@color/background"
+            android:elevation="80dp"
+            android:clipChildren="false"
+            android:outlineSpotShadowColor="@color/quaternario"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayoutPrivacy">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/privacy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="16dp"
-            android:background="@android:color/transparent"
-            android:drawableRight="@drawable/right"
-            android:drawablePadding="50dp"
-            android:padding="10dp"
-            android:text="@string/privacy"
-            android:textAlignment="textStart"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            app:layout_constraintEnd_toEndOf="@+id/generali"
-            app:layout_constraintStart_toStartOf="@+id/generali"
-            app:layout_constraintTop_toBottomOf="@+id/lingua" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/sicurezza"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@android:color/transparent"
+                android:drawableRight="@drawable/right"
+                android:drawablePadding="50dp"
+                android:padding="10dp"
+                android:text="@string/sicurezza"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/policy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="16dp"
-            android:background="@android:color/transparent"
-            android:drawableRight="@drawable/right"
-            android:drawablePadding="50dp"
-            android:padding="10dp"
-            android:text="@string/policy"
-            android:textAlignment="textStart"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            app:layout_constraintEnd_toEndOf="@+id/generali"
-            app:layout_constraintStart_toStartOf="@+id/generali"
-            app:layout_constraintTop_toBottomOf="@+id/privacy" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/sicurezza"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="16dp"
-            android:background="@android:color/transparent"
-            android:drawableRight="@drawable/right"
-            android:drawablePadding="50dp"
-            android:padding="10dp"
-            android:text="@string/sicurezza"
-            android:textAlignment="textStart"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            app:layout_constraintEnd_toEndOf="@+id/generali"
-            app:layout_constraintStart_toStartOf="@+id/generali"
-            app:layout_constraintTop_toBottomOf="@+id/policy" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/community"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="16dp"
-            android:background="@android:color/transparent"
-            android:drawableRight="@drawable/right"
-            android:drawablePadding="50dp"
-            android:padding="10dp"
-            android:text="@string/community"
-            android:textAlignment="textStart"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            app:layout_constraintEnd_toEndOf="@+id/generali"
-            app:layout_constraintStart_toStartOf="@+id/generali"
-            app:layout_constraintTop_toBottomOf="@+id/sicurezza" />
-
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/community"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@android:color/transparent"
+                android:drawableRight="@drawable/right"
+                android:drawablePadding="50dp"
+                android:padding="10dp"
+                android:text="@string/community"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sicurezza" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
