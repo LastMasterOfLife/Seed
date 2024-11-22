@@ -7,10 +7,11 @@ import android.animation.AnimatorSet
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.ImageView
 import android.widget.ProgressBar
-import android.widget.ThemedSpinnerAdapter
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.seedapp.databinding.ActivityLoadingBinding
@@ -20,115 +21,199 @@ class LoadingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoadingBinding
     private lateinit var progressBar: ProgressBar
     private val handler = Handler()
+    private lateinit var textView: TextView
+    private var tapped = false
+
+    private lateinit var sharedPreferences: android.content.SharedPreferences
+    private var isFirstRun = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoadingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE)
+        isFirstRun = sharedPreferences.getBoolean("isFirstRun", true)
+
+        initializeViews()
+        setupTextViewAnimation()
+        setupClickListener()
+        setupImagesAndAnimations()
+        simulateLoading()
+
+        /*
+        Handler(Looper.getMainLooper()).postDelayed({
+            if (isFirstRun) {
+                val editor = sharedPreferences.edit()
+                editor.putBoolean("isFirstRun", false)
+                editor.apply()
+
+                // Vai alla pagina di creazione account
+                val intent = Intent(this, Create_accountActivity::class.java)
+                startActivity(intent)
+            } else {
+                // Vai al MainActivity
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            }
+
+            finish() // Chiude la SplashActivity
+        }, 2000) // Imposta il ritardo della splash page (ad esempio, 2 secondi)
+
+         */
+    }
+
+
+    private fun initializeViews() {
         progressBar = binding.progressBar
+        textView = binding.tocca
+    }
+
+    private fun setupTextViewAnimation() {
+        handler.postDelayed({
+            startTextAnimation(textView)
+            tapped = true
+        }, 6000)
+    }
+
+    private fun setupClickListener() {
+        val superfice = binding.schermata
+        superfice.setOnClickListener {
+            if (tapped) {
+                Handler(Looper.getMainLooper()).postDelayed({
+                    if (isFirstRun) {
+                        val editor = sharedPreferences.edit()
+                        editor.putBoolean("isFirstRun", false)
+                        editor.apply()
+
+                        // Vai alla pagina di creazione account
+                        val intent = Intent(this, Create_accountActivity::class.java)
+                        startActivity(intent)
+                    } else {
+                        // Vai al MainActivity
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                    }
+
+                    finish() // Chiude la SplashActivity
+                }, 0) // Imposta il ritardo della splash page (ad esempio, 2 secondi)
+            }
+        }
+    }
+
+    private fun setupImagesAndAnimations() {
         val layout = binding.layoutloading
 
-        // Crea e posiziona le immagini sovrapposte
-        val image1 = ImageView(this)
-        image1.setImageResource(R.drawable.pianta_1)
-        val image2 = ImageView(this)
-        image2.setImageResource(R.drawable.pianta_2)
-        val image3 = ImageView(this)
-        image3.setImageResource(R.drawable.pianta_3)
-        val image4 = ImageView(this)
-        image4.setImageResource(R.drawable.pianta_4)
-        val image5 = ImageView(this)
-        image5.setImageResource(R.drawable.pianta_5)
+        // Crea e aggiungi le immagini
+        val images = createImages()
+        images.forEach { layout.addView(it) }
 
-        // Aggiungi le immagini al layout
-        layout.addView(image1)
-        layout.addView(image2)
-        layout.addView(image3)
-        layout.addView(image4)
-        layout.addView(image5)
+        // Centra le immagini nel layout
+        centerImagesInLayout(images, layout)
 
-        // Centrare le immagini nel ConstraintLayout
-        val params = arrayOf(
-            image1, image2, image3, image4, image5
-        ).map { image ->
-            val p = image.layoutParams as ConstraintLayout.LayoutParams
-            //p.topToTop = layout.id
+        // Imposta la trasparenza iniziale
+        setInitialImageAlpha(images)
+
+        // Esegui le animazioni per le immagini
+        startImageAnimations(images)
+    }
+
+    private fun createImages(): Array<ImageView> {
+        val imageResources = arrayOf(
+            R.drawable.pianta_1, R.drawable.pianta_2, R.drawable.pianta_3,
+            R.drawable.pianta_4, R.drawable.pianta_5
+        )
+
+        return imageResources.map { res ->
+            ImageView(this).apply {
+                setImageResource(res)
+            }
+        }.toTypedArray()
+    }
+
+    private fun centerImagesInLayout(images: Array<ImageView>, layout: ConstraintLayout) {
+        val params = images.map {
+            val p = it.layoutParams as ConstraintLayout.LayoutParams
             p.bottomToBottom = layout.id
             p.startToStart = layout.id
             p.endToEnd = layout.id
             p
         }
 
-        image1.layoutParams = params[0]
-        image2.layoutParams = params[1]
-        image3.layoutParams = params[2]
-        image4.layoutParams = params[3]
-        image5.layoutParams = params[4]
+        images.zip(params).forEach { (image, param) ->
+            image.layoutParams = param
+        }
+    }
 
-        // Imposta la trasparenza iniziale delle immagini
-        val images = arrayOf(image1, image2, image3, image4, image5)
+    private fun setInitialImageAlpha(images: Array<ImageView>) {
         images.forEachIndexed { index, image ->
             image.alpha = if (index == 0) 1f else 0f
         }
+    }
 
-        // Durata di fade-in e fade-out per ogni immagine
-        val fadeDuration = 1700L // Durata di fade-in e fade-out
+    private fun startImageAnimations(images: Array<ImageView>) {
+        val fadeDuration = 1700L
+        val animators = mutableListOf<Animator>()
 
-        // Crea gli ObjectAnimator per ogni immagine
-        val animators = mutableListOf<ObjectAnimator>()
-
-        // Animazione in avanti (dalla 1 alla 5)
+        // Animazione in avanti
         for (i in 0 until images.size - 1) {
-            val fadeOut = ObjectAnimator.ofFloat(images[i], "alpha", 1f, 0f)
-            fadeOut.duration = fadeDuration
-            fadeOut.interpolator = AccelerateDecelerateInterpolator()
-
-            val fadeIn = ObjectAnimator.ofFloat(images[i + 1], "alpha", 0f, 1f)
-            fadeIn.duration = fadeDuration
-            fadeIn.interpolator = AccelerateDecelerateInterpolator()
-
-            fadeOut.addListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator) {
-                    fadeIn.start()
-                }
-            })
-
-            animators.add(fadeOut)
-            animators.add(fadeIn)
+            createImageFadeAnimation(images[i], images[i + 1], fadeDuration, animators)
         }
 
-        // Animazione indietro (dalla 5 alla 1)
+        // Animazione indietro
         for (i in images.size - 1 downTo 1) {
-            val fadeOut = ObjectAnimator.ofFloat(images[i], "alpha", 1f, 0f)
-            fadeOut.duration = fadeDuration
-            fadeOut.interpolator = AccelerateDecelerateInterpolator()
-
-            val fadeIn = ObjectAnimator.ofFloat(images[i - 1], "alpha", 0f, 1f)
-            fadeIn.duration = fadeDuration
-            fadeIn.interpolator = AccelerateDecelerateInterpolator()
-
-            fadeOut.addListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator) {
-                    fadeIn.start()
-                }
-            })
-
-            animators.add(fadeOut)
-            animators.add(fadeIn)
+            createImageFadeAnimation(images[i], images[i - 1], fadeDuration, animators)
         }
 
-        // Usa un AnimatorSet per eseguire tutte le animazioni in sequenza
+        // Esegui le animazioni in sequenza
         val animatorSet = AnimatorSet()
-        animatorSet.playSequentially(animators as List<Animator>?)
+        animatorSet.playSequentially(animators)
         animatorSet.start()
+    }
 
-        // Avvia la progress bar
-        simulateLoading()
+    private fun createImageFadeAnimation(fromImage: ImageView, toImage: ImageView, duration: Long, animators: MutableList<Animator>) {
+        val fadeOut = ObjectAnimator.ofFloat(fromImage, "alpha", 1f, 0f).apply {
+            this.duration = duration
+            interpolator = AccelerateDecelerateInterpolator()
+        }
+
+        val fadeIn = ObjectAnimator.ofFloat(toImage, "alpha", 0f, 1f).apply {
+            this.duration = duration
+            interpolator = AccelerateDecelerateInterpolator()
+        }
+
+        fadeOut.addListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator) {
+                fadeIn.start()
+            }
+        })
+
+        animators.add(fadeOut)
+        animators.add(fadeIn)
+    }
+
+    private fun startTextAnimation(textView: TextView) {
+        val fadeIn = ObjectAnimator.ofFloat(textView, "alpha", 0f, 1f).apply {
+            duration = 1000L
+        }
+
+        val fadeOut = ObjectAnimator.ofFloat(textView, "alpha", 1f, 0f).apply {
+            duration = 1000L
+            startDelay = 1000L
+        }
+
+        val animatorSet = AnimatorSet().apply {
+            playSequentially(fadeIn, fadeOut)
+            addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    start()
+                }
+            })
+        }
+        animatorSet.start()
     }
 
     private fun simulateLoading() {
-        // Simula un caricamento con un Handler
         Thread {
             for (i in 1..100) {
                 Thread.sleep(25)
@@ -138,9 +223,25 @@ class LoadingActivity : AppCompatActivity() {
                     progressBar.progress = i
                 }
             }
-            // Una volta completato il caricamento, avvia l'activity desiderata
-            startActivity(Intent(this, MainActivity::class.java)) // Sostituisci con l'activity successiva
-            finish() // Chiudi l'activity di caricamento
+            if (!tapped) {
+                Handler(Looper.getMainLooper()).postDelayed({
+                    if (isFirstRun) {
+                        val editor = sharedPreferences.edit()
+                        editor.putBoolean("isFirstRun", false)
+                        editor.apply()
+
+                        // Vai alla pagina di creazione account
+                        val intent = Intent(this, Create_accountActivity::class.java)
+                        startActivity(intent)
+                    } else {
+                        // Vai al MainActivity
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                    }
+
+                    finish() // Chiude la SplashActivity
+                }, 0) // Imposta il ritardo della splash page (ad esempio, 2 secondi)
+            }
         }.start()
     }
 }

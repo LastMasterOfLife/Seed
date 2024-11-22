@@ -247,5 +247,7 @@ Nota: I dati eliminati non potranno essere recuperati in seguito. Se desideri ma
     <string name="modProf">Modifica Profilo</string>
     <string name="condiprof">Condividi Profilo</string>
     <string name="Use">User</string>
-
+    <string name="UsernameCreate" translatable="false">Username</string>
+    <string name="NameCreate" translatable="false">Name</string>
+    <string name="PasswordCreate" translatable="false">Password</string>
 </resources>
