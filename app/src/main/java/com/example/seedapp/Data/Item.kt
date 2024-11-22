@@ -1,4 +1,3 @@
 package com.example.seedapp.Data
 
-class Planet {
-}
+data class Item(val text: String)

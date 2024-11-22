@@ -8,5 +8,6 @@
     <color name="quaternario">#319C73</color>
     <color name="background">#F7F8D3</color>
     <color name="contrasto">#D4DF9F</color>
+    <color name="semiScuro">#EFE7E7</color>
 
 </resources>
