@@ -15,6 +15,10 @@ class Create_accountActivity : AppCompatActivity() {
         binding = ActivityCreateAccountBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val name = binding.nomeIn.text
+        val user = binding.nomeUtenteIn.text
+        val password = binding.passwordIn.text
+
         binding.imgFB.setOnClickListener {
             loginWithFacebook()
         }
@@ -24,9 +28,63 @@ class Create_accountActivity : AppCompatActivity() {
         }
 
         binding.creaAccount.setOnClickListener {
-            createNewAccount()
-
+            if(checkName(name.toString())){
+                if (checkUser(name.toString(),user.toString())){
+                    if (checkPassword(password.toString())){
+                        createNewAccount()
+                    }
+                    else{
+                        Toast.makeText(this, "La Password non contiene almeno una lettera maiuscola, una lettera minuscola e un carattere speciale", Toast.LENGTH_LONG)
+                            .show()
+                    }
+                }
+            }
         }
+    }
+
+    private fun checkPassword(password: String) : Boolean{
+
+        // Regex per controllare i requisiti
+        val uppercaseRegex = Regex(".*[A-Z].*") // Almeno una maiuscola
+        val lowercaseRegex = Regex(".*[a-z].*") // Almeno una minuscola
+        val specialCharRegex = Regex(".*[!@#\$%^&*(),.?\":{}|<>].*") // Almeno un carattere speciale
+        val numberRagex = Regex(".*[0-9].*") // almeno un numero
+
+
+        if (password.isNotEmpty()){
+            return uppercaseRegex.containsMatchIn(password) &&
+                    lowercaseRegex.containsMatchIn(password) &&
+                    specialCharRegex.containsMatchIn(password) &&
+                    numberRagex.containsMatchIn(password)
+        }
+        return false
+    }
+
+    private fun checkUser(name: String, user: String) : Boolean{
+        if (user.isNotEmpty() && name.isNotEmpty()) {
+            if (name == user) {
+                Toast.makeText(this, "Lo UserName non può essere uguale al nome", Toast.LENGTH_LONG)
+                    .show()
+                return false
+            }
+            else{
+                return true
+            }
+        }
+        else{
+            Toast.makeText(this, "manca lo UserName", Toast.LENGTH_LONG)
+                .show()
+            return false
+        }
+    }
+
+    private fun checkName(name: String) : Boolean{
+        if (name.isEmpty()){
+            Toast.makeText(this, "manca il nome", Toast.LENGTH_LONG)
+                .show()
+            return false
+        }
+        return true
     }
 
     private fun loginWithFacebook() {

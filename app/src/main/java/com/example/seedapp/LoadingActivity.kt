@@ -41,26 +41,6 @@ class LoadingActivity : AppCompatActivity() {
         setupImagesAndAnimations()
         simulateLoading()
 
-        /*
-        Handler(Looper.getMainLooper()).postDelayed({
-            if (isFirstRun) {
-                val editor = sharedPreferences.edit()
-                editor.putBoolean("isFirstRun", false)
-                editor.apply()
-
-                // Vai alla pagina di creazione account
-                val intent = Intent(this, Create_accountActivity::class.java)
-                startActivity(intent)
-            } else {
-                // Vai al MainActivity
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-            }
-
-            finish() // Chiude la SplashActivity
-        }, 2000) // Imposta il ritardo della splash page (ad esempio, 2 secondi)
-
-         */
     }
 
 
