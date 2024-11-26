@@ -145,7 +145,7 @@ class TreeView @JvmOverloads constructor(
         // Disegna il cerchio e il rettangolo sulla prima foglia
 
         aiuto(canvas,tocchi)
-        Log.d("TreeView", "Numero totale foglie: ${leafPositions.size}")
+        Log.d("foglieTot", "Numero totale foglie: ${leafPositions.size}")
         canvas.restore()
     }
 
@@ -155,29 +155,45 @@ class TreeView @JvmOverloads constructor(
                 drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "Testo esempio")
             }
             if (num == 1) {
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "Testo esempio")
                 drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "Testo esempio")
             }
-            /*
+
+
             if (num == 2){
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[256], "Testo esempio")
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "Testo esempio")
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "Testo esempio")
+                //drawCircleAndRectangleOnLeaf(canvas, leafPositions[256], "Testo esempio")
             }
-            */
+
+
 
             if (num == 3){
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "Testo esempio")
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "Testo esempio")
                 drawCircleAndRectangleOnLeaf(canvas, leafPositions[2], "Testo esempio")
             }
-            /*
+
             if (num == 4){
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[768], "Testo esempio")
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "Testo esempio")
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "Testo esempio")
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[2], "Testo esempio")
+                //drawCircleAndRectangleOnLeaf(canvas, leafPositions[768], "Testo esempio")
             }
             if (num == 5){
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[514], "Testo esempio")
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "Testo esempio")
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "Testo esempio")
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[2], "Testo esempio")
+                //drawCircleAndRectangleOnLeaf(canvas, leafPositions[514], "Testo esempio")
             }
             if (num == 6){
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[1026], "Testo esempio")
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "Testo esempio")
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "Testo esempio")
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[2], "Testo esempio")
+                //drawCircleAndRectangleOnLeaf(canvas, leafPositions[1026], "Testo esempio")
             }
 
-             */
+
         }
     }
 
@@ -262,14 +278,14 @@ class TreeView @JvmOverloads constructor(
         addLeafPosition(x, y)
 
 
-        /*
+
         // Disegna il numero univoco della foglia accanto ad essa
         canvas.drawText(
             "n° ${leafcount}",
             x + 20f, y, textPaint
         )
 
-         */
+
 
         Log.d("TreeView", "Leaf counter: $leafcount, Leaf positions: ${leafPositions.size}")
 
@@ -295,7 +311,6 @@ class TreeView @JvmOverloads constructor(
         tocchi = tap
         shouldDrawBranches = true
         startBranchAnimation()
-        Log.d("foglie", "Foglie totali: $leafcount")
     }
 
     private fun startBranchAnimation() {
