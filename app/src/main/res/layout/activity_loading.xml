@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:text="V.1.0.0"
+                android:text="Ver.1.0.0"
                 android:textColor="@color/quaternario"
                 android:textSize="12dp"
                 app:layout_constraintStart_toStartOf="parent"

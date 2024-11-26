@@ -27,6 +27,9 @@ class TreeView @JvmOverloads constructor(
     private var leafcount = 0
     private val leafPositions = mutableListOf<PointF>()  // Supponiamo che tu abbia una lista di posizioni delle foglie
 
+
+    var tocchi = 0
+
     data class Branch(
         val id: Int = 0,
         val startX: Float,
@@ -139,7 +142,81 @@ class TreeView @JvmOverloads constructor(
             drawBranch(canvas, branchStartX, branchStartY, -90.0, branchLength) // Primo ramo
         }
 
+        // Disegna il cerchio e il rettangolo sulla prima foglia
+
+        aiuto(canvas,tocchi)
+        Log.d("TreeView", "Numero totale foglie: ${leafPositions.size}")
         canvas.restore()
+    }
+
+    private fun aiuto( canvas: Canvas,num: Int){
+        if (leafPositions.size > 1) {
+            if (num == 0) {
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "Testo esempio")
+            }
+            if (num == 1) {
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "Testo esempio")
+            }
+            /*
+            if (num == 2){
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[256], "Testo esempio")
+            }
+            */
+
+            if (num == 3){
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[2], "Testo esempio")
+            }
+            /*
+            if (num == 4){
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[768], "Testo esempio")
+            }
+            if (num == 5){
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[514], "Testo esempio")
+            }
+            if (num == 6){
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[1026], "Testo esempio")
+            }
+
+             */
+        }
+    }
+
+    private fun isPointInsideCircle(x: Float, y: Float, circleX: Float, circleY: Float, radius: Float): Boolean {
+        val distance = Math.sqrt(((x - circleX) * (x - circleX) + (y - circleY) * (y - circleY)).toDouble())
+        return distance <= radius
+    }
+    private fun drawCircleAndRectangleOnLeaf(canvas: Canvas, leafPosition: PointF, text: String) {
+        // Disegna il cerchio
+        val circlePaint = Paint().apply {
+            color = Color.BLUE // Colore del cerchio
+            style = Paint.Style.FILL
+            isAntiAlias = true
+        }
+        val radius = 30f
+        canvas.drawCircle(leafPosition.x, leafPosition.y, radius, circlePaint)
+
+        // Disegna il rettangolo
+        val rectWidth = 130f
+        val rectHeight = 45f
+        val rectPaint = Paint().apply {
+            color = Color.YELLOW // Colore del rettangolo
+            style = Paint.Style.FILL
+            isAntiAlias = true
+        }
+        val left = leafPosition.x - rectWidth / 2
+        val top = leafPosition.y + radius + 10
+        val right = leafPosition.x + rectWidth / 2
+        val bottom = top + rectHeight
+        canvas.drawRect(left, top, right, bottom, rectPaint)
+
+        // Disegna il testo
+        val textPaint = Paint().apply {
+            color = Color.BLACK
+            textSize = 20f
+            textAlign = Paint.Align.CENTER
+            isAntiAlias = true
+        }
+        canvas.drawText(text, leafPosition.x, top + rectHeight / 2 + 8, textPaint)
     }
 
 
@@ -194,8 +271,6 @@ class TreeView @JvmOverloads constructor(
 
          */
 
-
-
         Log.d("TreeView", "Leaf counter: $leafcount, Leaf positions: ${leafPositions.size}")
 
 
@@ -214,9 +289,10 @@ class TreeView @JvmOverloads constructor(
     }
 
     // Metodo pubblico per incrementare la lunghezza del ramo
-    fun incrementBranchLength() {
+    fun incrementBranchLength(tap: Int) {
         resetTree()
         branchLength += incrementValue
+        tocchi = tap
         shouldDrawBranches = true
         startBranchAnimation()
         Log.d("foglie", "Foglie totali: $leafcount")
@@ -240,6 +316,16 @@ class TreeView @JvmOverloads constructor(
             MotionEvent.ACTION_DOWN -> {
                 previousX = event.x
                 previousY = event.y
+
+                // Verifica se il tocco è all'interno di un cerchio
+                for (leaf in leafPositions) {
+                    if (isPointInsideCircle(event.x, event.y, leaf.x, leaf.y, 30f)) {
+                        // Esegui l'azione quando il cerchio viene cliccato
+                        Log.d("TreeView", "Cerchio cliccato a posizione: ${leaf.x}, ${leaf.y}")
+                        // Puoi aggiungere qui l'azione che desideri, ad esempio cambiare il colore del cerchio
+                        return true // Per evitare che l'evento venga elaborato ulteriormente
+                    }
+                }
             }
             MotionEvent.ACTION_MOVE -> {
                 val dx = event.x - previousX

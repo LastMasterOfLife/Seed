@@ -27,8 +27,6 @@ class SeedFragment : Fragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_seed, container, false)
-       // val spaceContainer: FrameLayout = view.findViewById(R.id.spaceContainer)
-       // val addButton: Button = view.findViewById(R.id.addButton)
 
         treeView = view.findViewById(R.id.treeView)
         val addBranchButton: Button = view.findViewById(R.id.addBranchButton)
@@ -36,7 +34,7 @@ class SeedFragment : Fragment() {
         var counttap = 0
         addBranchButton.setOnClickListener {
             if (counttap <7){
-                treeView.incrementBranchLength() // Chiamata al metodo per aggiungere un ramo
+                treeView.incrementBranchLength(counttap) // Chiamata al metodo per aggiungere un ramo
                 counttap++
             }
 
