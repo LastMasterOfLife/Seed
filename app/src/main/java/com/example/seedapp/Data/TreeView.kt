@@ -10,7 +10,10 @@ import android.view.ScaleGestureDetector
 import android.view.View
 import android.animation.ValueAnimator
 import android.graphics.PointF
+import android.graphics.RectF
+import android.graphics.Typeface
 import android.util.Log
+import android.widget.Toast
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -150,46 +153,47 @@ class TreeView @JvmOverloads constructor(
     }
 
     private fun aiuto( canvas: Canvas,num: Int){
+
         if (leafPositions.size > 1) {
             if (num == 0) {
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "Testo esempio")
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "1")
             }
             if (num == 1) {
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "Testo esempio")
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "Testo esempio")
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "1")
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "2")
             }
 
 
             if (num == 2){
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "Testo esempio")
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "Testo esempio")
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "1")
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "2")
                 //drawCircleAndRectangleOnLeaf(canvas, leafPositions[256], "Testo esempio")
             }
 
 
 
             if (num == 3){
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "Testo esempio")
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "Testo esempio")
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[2], "Testo esempio")
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "1")
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "2")
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[2], "4")
             }
 
             if (num == 4){
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "Testo esempio")
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "Testo esempio")
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[2], "Testo esempio")
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "1")
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "2")
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[2], "4")
                 //drawCircleAndRectangleOnLeaf(canvas, leafPositions[768], "Testo esempio")
             }
             if (num == 5){
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "Testo esempio")
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "Testo esempio")
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[2], "Testo esempio")
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "1")
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "2")
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[2], "4")
                 //drawCircleAndRectangleOnLeaf(canvas, leafPositions[514], "Testo esempio")
             }
             if (num == 6){
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "Testo esempio")
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "Testo esempio")
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[2], "Testo esempio")
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "1")
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "2")
+                drawCircleAndRectangleOnLeaf(canvas, leafPositions[2], "4")
                 //drawCircleAndRectangleOnLeaf(canvas, leafPositions[1026], "Testo esempio")
             }
 
@@ -202,38 +206,47 @@ class TreeView @JvmOverloads constructor(
         return distance <= radius
     }
     private fun drawCircleAndRectangleOnLeaf(canvas: Canvas, leafPosition: PointF, text: String) {
-        // Disegna il cerchio
-        val circlePaint = Paint().apply {
-            color = Color.BLUE // Colore del cerchio
+        // Disegna il cerchio con bordino
+        val outerCirclePaint = Paint().apply {
+            color = Color.BLUE // Colore del bordo del cerchio
+            style = Paint.Style.FILL
+            isAntiAlias = true
+        }
+        val innerCirclePaint = Paint().apply {
+            color = Color.GREEN // Colore del cerchio interno
             style = Paint.Style.FILL
             isAntiAlias = true
         }
         val radius = 30f
-        canvas.drawCircle(leafPosition.x, leafPosition.y, radius, circlePaint)
+        canvas.drawCircle(leafPosition.x, leafPosition.y, radius + 5f, outerCirclePaint) // Bordino
+        canvas.drawCircle(leafPosition.x, leafPosition.y, radius, innerCirclePaint) // Cerchio interno
 
-        // Disegna il rettangolo
-        val rectWidth = 130f
+        // Disegna il rettangolo con bordi arrotondati
+        val rectWidth = 80f
         val rectHeight = 45f
         val rectPaint = Paint().apply {
             color = Color.YELLOW // Colore del rettangolo
             style = Paint.Style.FILL
             isAntiAlias = true
         }
-        val left = leafPosition.x - rectWidth / 2
-        val top = leafPosition.y + radius + 10
-        val right = leafPosition.x + rectWidth / 2
-        val bottom = top + rectHeight
-        canvas.drawRect(left, top, right, bottom, rectPaint)
+        val rectLeft = leafPosition.x - rectWidth / 2
+        val rectTop = leafPosition.y + radius + 10
+        val rectRight = leafPosition.x + rectWidth / 2
+        val rectBottom = rectTop + rectHeight
+        val rect = RectF(rectLeft, rectTop, rectRight, rectBottom)
+        canvas.drawRoundRect(rect, 15f, 15f, rectPaint) // Angoli arrotondati
 
-        // Disegna il testo
+        // Disegna il testo in grassetto
         val textPaint = Paint().apply {
             color = Color.BLACK
             textSize = 20f
             textAlign = Paint.Align.CENTER
             isAntiAlias = true
+            typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD) // Grassetto
         }
-        canvas.drawText(text, leafPosition.x, top + rectHeight / 2 + 8, textPaint)
+        canvas.drawText(text, leafPosition.x, rectTop + rectHeight / 2 + 8, textPaint)
     }
+
 
 
     private fun drawBranch(canvas: Canvas, x1: Float, y1: Float, angle: Double, length: Float) {
@@ -277,7 +290,7 @@ class TreeView @JvmOverloads constructor(
         )
         addLeafPosition(x, y)
 
-
+        /*
 
         // Disegna il numero univoco della foglia accanto ad essa
         canvas.drawText(
@@ -285,6 +298,7 @@ class TreeView @JvmOverloads constructor(
             x + 20f, y, textPaint
         )
 
+         */
 
 
         Log.d("TreeView", "Leaf counter: $leafcount, Leaf positions: ${leafPositions.size}")
@@ -336,6 +350,8 @@ class TreeView @JvmOverloads constructor(
                 for (leaf in leafPositions) {
                     if (isPointInsideCircle(event.x, event.y, leaf.x, leaf.y, 30f)) {
                         // Esegui l'azione quando il cerchio viene cliccato
+                        Toast.makeText(context, "è stato premuto un obbiettivo", Toast.LENGTH_SHORT)
+                            .show()
                         Log.d("TreeView", "Cerchio cliccato a posizione: ${leaf.x}, ${leaf.y}")
                         // Puoi aggiungere qui l'azione che desideri, ad esempio cambiare il colore del cerchio
                         return true // Per evitare che l'evento venga elaborato ulteriormente
