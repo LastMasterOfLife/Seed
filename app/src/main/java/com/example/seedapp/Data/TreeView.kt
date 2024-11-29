@@ -184,24 +184,24 @@ class TreeView @JvmOverloads constructor(
                     drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "2")
                     drawCircleAndRectangleOnLeaf(canvas, leafPositions[1024], "3")
                     drawCircleAndRectangleOnLeaf(canvas, leafPositions[2], "4")
-                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[768], "5")
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[1536], "5")
                 }
                 if (num == 5){
                     drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "1")
                     drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "2")
                     drawCircleAndRectangleOnLeaf(canvas, leafPositions[1024], "3")
                     drawCircleAndRectangleOnLeaf(canvas, leafPositions[2], "4")
-                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[768], "5")
-                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[514], "6")
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[1536], "5")
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[513], "6")
                 }
                 if (num == 6){
                     drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "1")
                     drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "2")
                     drawCircleAndRectangleOnLeaf(canvas, leafPositions[2048], "3")
                     drawCircleAndRectangleOnLeaf(canvas, leafPositions[2], "4")
-                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[768], "5")
-                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[514], "6")
-                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[1026], "7")
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[3072], "5")
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[1025], "6")
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[2049], "7")
                 }
 
 
@@ -301,8 +301,7 @@ class TreeView @JvmOverloads constructor(
         )
         addLeafPosition(x, y)
 
-
-
+        /*
         // Disegna il numero univoco della foglia accanto ad essa
         canvas.drawText(
             "n° ${leafcount}",
@@ -310,7 +309,7 @@ class TreeView @JvmOverloads constructor(
         )
 
 
-
+         */
 
         Log.d("TreeView", "Leaf counter: $leafcount, Leaf positions: ${leafPositions.size}")
 
