@@ -231,13 +231,15 @@ Puoi gestire l\'autorizzazione per l\'accesso all\'archiviazione sicura in quals
 
 </string>
     <string name="descrizioneeliminadati">L\'eliminazione di tutti i dati comporta la rimozione completa delle informazioni salvate nell\'app SEED,
-        incluse le preferenze, i dati di geolocalizzazione, gli elementi preferiti, gli eventi nel calendario e le impostazioni personalizzate.
+        incluse le preferenze, i dati di geolocalizzazione, gli elementi preferiti, gli eventi nel calendario e le impostazioni personalizzate.\n\n
         Questa azione è irreversibile e non può essere annullata. \n\n
-Cosa verrà eliminato: \n\n
-Tutte le preferenze salvate (ad esempio, lingua, suoni, notifiche). \n
-Dati relativi a posizioni e localizzazioni salvate. \n
-Eventuali dati di crescita personale e tracce di attività. \n
-Eventuali preferiti e liste personalizzate. \n\n
+
+        Cosa verrà eliminato: \n\n
+
+        - Tutte le preferenze salvate (ad esempio, lingua, suoni, notifiche). \n
+        - Dati relativi a posizioni e localizzazioni salvate. \n
+        - Eventuali dati di crescita personale e tracce di attività. \n
+        - Eventuali preferiti e liste personalizzate. \n\n
 
 Nota: I dati eliminati non potranno essere recuperati in seguito. Se desideri mantenere alcune informazioni, assicurati di eseguire un backup o esportarle prima di procedere.</string>
     <string name="nomeUtente">Nome Utente</string>

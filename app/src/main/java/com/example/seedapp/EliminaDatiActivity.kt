@@ -15,7 +15,6 @@ class EliminaDatiActivity : AppCompatActivity() {
         binding = ActivityEliminaDatiBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.descrizione.text = getString(R.string.descrizioneeliminadati)
 
         binding.back.setOnClickListener {
             onBackPressed()
