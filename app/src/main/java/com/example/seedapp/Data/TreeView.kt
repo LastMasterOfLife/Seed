@@ -9,11 +9,14 @@ import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import android.view.View
 import android.animation.ValueAnimator
+import android.content.Intent
 import android.graphics.PointF
 import android.graphics.RectF
 import android.graphics.Typeface
 import android.util.Log
 import android.widget.Toast
+import com.example.seedapp.DatailGoalsActivity
+import com.example.seedapp.GeneraliActivity
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -167,34 +170,39 @@ class TreeView @JvmOverloads constructor(
             if (num == 2){
                 drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "1")
                 drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "2")
-                //drawCircleAndRectangleOnLeaf(canvas, leafPositions[256], "Testo esempio")
+                //drawCircleAndRectangleOnLeaf(canvas, leafPositions[256], "3")
             }
-
-
 
             if (num == 3){
                 drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "1")
                 drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "2")
+                //drawCircleAndRectangleOnLeaf(canvas, leafPositions[256], "3")
                 drawCircleAndRectangleOnLeaf(canvas, leafPositions[2], "4")
             }
 
             if (num == 4){
                 drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "1")
                 drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "2")
+                //drawCircleAndRectangleOnLeaf(canvas, leafPositions[256], "3")
                 drawCircleAndRectangleOnLeaf(canvas, leafPositions[2], "4")
-                //drawCircleAndRectangleOnLeaf(canvas, leafPositions[768], "Testo esempio")
+                //drawCircleAndRectangleOnLeaf(canvas, leafPositions[768], "5")
             }
             if (num == 5){
                 drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "1")
                 drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "2")
+                //drawCircleAndRectangleOnLeaf(canvas, leafPositions[256], "3")
                 drawCircleAndRectangleOnLeaf(canvas, leafPositions[2], "4")
-                //drawCircleAndRectangleOnLeaf(canvas, leafPositions[514], "Testo esempio")
+                //drawCircleAndRectangleOnLeaf(canvas, leafPositions[768], "5")
+                //drawCircleAndRectangleOnLeaf(canvas, leafPositions[514], "6")
             }
             if (num == 6){
                 drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "1")
                 drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "2")
+                //drawCircleAndRectangleOnLeaf(canvas, leafPositions[256], "3")
                 drawCircleAndRectangleOnLeaf(canvas, leafPositions[2], "4")
-                //drawCircleAndRectangleOnLeaf(canvas, leafPositions[1026], "Testo esempio")
+                //drawCircleAndRectangleOnLeaf(canvas, leafPositions[768], "5")
+                //drawCircleAndRectangleOnLeaf(canvas, leafPositions[514], "6")
+                //drawCircleAndRectangleOnLeaf(canvas, leafPositions[1026], "7")
             }
 
 
@@ -208,7 +216,7 @@ class TreeView @JvmOverloads constructor(
     private fun drawCircleAndRectangleOnLeaf(canvas: Canvas, leafPosition: PointF, text: String) {
         // Disegna il cerchio con bordino
         val outerCirclePaint = Paint().apply {
-            color = Color.BLUE // Colore del bordo del cerchio
+            color = Color.rgb(49, 156, 115) // quaternario
             style = Paint.Style.FILL
             isAntiAlias = true
         }
@@ -225,7 +233,7 @@ class TreeView @JvmOverloads constructor(
         val rectWidth = 80f
         val rectHeight = 45f
         val rectPaint = Paint().apply {
-            color = Color.YELLOW // Colore del rettangolo
+            color = Color.rgb(49, 156, 115) // quaternario
             style = Paint.Style.FILL
             isAntiAlias = true
         }
@@ -352,6 +360,11 @@ class TreeView @JvmOverloads constructor(
                         // Esegui l'azione quando il cerchio viene cliccato
                         Toast.makeText(context, "è stato premuto un obbiettivo", Toast.LENGTH_SHORT)
                             .show()
+
+                        val intent = Intent(context, DatailGoalsActivity::class.java)
+                        intent.putExtra("numero","2")
+                        context.startActivity(intent)
+
                         Log.d("TreeView", "Cerchio cliccato a posizione: ${leaf.x}, ${leaf.y}")
                         // Puoi aggiungere qui l'azione che desideri, ad esempio cambiare il colore del cerchio
                         return true // Per evitare che l'evento venga elaborato ulteriormente

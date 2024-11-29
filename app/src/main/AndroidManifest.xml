@@ -26,6 +26,9 @@
         android:theme="@style/Theme.SeedApp"
         tools:targetApi="31">
         <activity
+            android:name=".DatailGoalsActivity"
+            android:exported="false" />
+        <activity
             android:name=".Create_accountActivity"
             android:exported="false" />
         <activity

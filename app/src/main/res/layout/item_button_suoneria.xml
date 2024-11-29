@@ -20,8 +20,8 @@
             android:padding="10dp"
             android:paddingRight="70dp"
             android:text="Wistley"
-            android:textAlignment="textStart"
             android:textColor="@color/black"
+            android:textAlignment="textStart"
             android:textSize="22dp" />
 
         <RadioButton

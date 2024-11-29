@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="@drawable/sfondo_seed"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SicurezzaActivity">
@@ -53,7 +52,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/descrizioneshermo"
-                    android:textColor="#000000"
                     android:textSize="18sp" />
 
             </LinearLayout>
@@ -83,7 +81,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/descrizionesospetti"
-                    android:textColor="#000000"
                     android:textSize="18sp" />
 
             </LinearLayout>
