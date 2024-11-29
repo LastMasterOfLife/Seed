@@ -2,12 +2,19 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
     <color name="primary">#6B8F24</color>
-    <color name="secondary">#A8C843</color>
     <color name="tertiary">#4B763D</color>
-    <color name="quaternario">#319C73</color>
     <color name="background">#67F7F8D3</color>
     <color name="contrasto">#D4DF9F</color>
     <color name="semiScuro">#F2F2F2</color>
+
+
+
+    <color name="secondary">#A8C843</color>
+    <color name="quaternario">#319C73</color>
+    <color name="nuovo">#3E6045</color>
+    <color name="nuovo1">#A8A761</color>
+    <color name="nuovo2">#907A51</color>
 
 </resources>

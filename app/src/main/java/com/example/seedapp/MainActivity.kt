@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
+        changeStatusBarColor()
 /*
         val backButton: MaterialButton = binding.back
 
@@ -188,5 +189,10 @@ class MainActivity : AppCompatActivity() {
         val config = resources.configuration
         config.setLocale(locale)
         resources.updateConfiguration(config, resources.displayMetrics)
+    }
+
+
+    private fun changeStatusBarColor() {
+        window.statusBarColor = resources.getColor(R.color.white)
     }
 }

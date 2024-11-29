@@ -19,7 +19,7 @@
         android:background="@drawable/rounded_bottom_navigation_background"
         app:menu="@menu/bottom_navigation_menu"
         app:itemTextColor="@color/black"
-        app:itemIconTint="@color/tertiary"
+        app:itemIconTint="@color/secondary"
         app:labelVisibilityMode="labeled"/>
 
 
