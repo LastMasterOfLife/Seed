@@ -19,6 +19,9 @@ import com.example.seedapp.DatailGoalsActivity
 import com.example.seedapp.GeneraliActivity
 import kotlin.math.cos
 import kotlin.math.sin
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+
 
 class TreeView @JvmOverloads constructor(
     context: Context,
@@ -32,6 +35,8 @@ class TreeView @JvmOverloads constructor(
 
     private var leafcount = 0
     private val leafPositions = mutableListOf<PointF>()  // Supponiamo che tu abbia una lista di posizioni delle foglie
+
+
 
 
     var tocchi = 0
@@ -111,7 +116,8 @@ class TreeView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         canvas.save()
-
+        //loadTreeState()
+        //clearTreeKey("branchMap")
         leafcount = 0
         leafPositions.clear()
 
@@ -152,7 +158,10 @@ class TreeView @JvmOverloads constructor(
 
         aiuto(canvas,tocchi)
         Log.d("foglieTot", "Numero totale foglie: ${leafPositions.size}")
+        //saveTreeState()
         canvas.restore()
+
+
     }
 
     private fun aiuto( canvas: Canvas,num: Int){
@@ -385,4 +394,58 @@ class TreeView @JvmOverloads constructor(
         }
         return true
     }
+
+    // Funzione per salvare lo stato dell'albero
+    private fun saveTreeState() {
+        val sharedPreferences = context.getSharedPreferences("TreePreferences", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+
+        // Serializza i dati dei rami
+        val gson = Gson()
+        val branchJson = gson.toJson(branchMap)
+
+        // Salva i dati
+        editor.putString("branchMap", branchJson)
+        editor.putFloat("branchLength", branchLength)
+        editor.putBoolean("shouldDrawBranches", shouldDrawBranches)
+        editor.apply()
+
+        Toast.makeText(context, "Stato dell'albero salvato", Toast.LENGTH_SHORT).show()
+    }
+
+    // Funzione per caricare lo stato dell'albero
+    private fun loadTreeState() {
+        val sharedPreferences = context.getSharedPreferences("TreePreferences", Context.MODE_PRIVATE)
+
+        val gson = Gson()
+        val branchJson = sharedPreferences.getString("branchMap", null)
+
+        // Deserializza i dati dei rami
+        if (branchJson != null) {
+            val type = object : TypeToken<MutableMap<Int, Branch>>() {}.type
+            branchMap.clear()
+            branchMap.putAll(gson.fromJson(branchJson, type))
+        }
+
+        // Ripristina altre variabili
+        branchLength = sharedPreferences.getFloat("branchLength", 0f)
+        shouldDrawBranches = sharedPreferences.getBoolean("shouldDrawBranches", false)
+
+        invalidate() // Ridisegna la vista
+        Toast.makeText(context, "Stato dell'albero caricato", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun clearTreeKey(key: String) {
+        val sharedPreferences = context.getSharedPreferences("TreePreferences", Context.MODE_PRIVATE)
+        if (sharedPreferences.contains(key)) {
+            val editor = sharedPreferences.edit()
+            editor.remove(key) // Rimuove solo la chiave specificata
+            editor.apply()
+            Toast.makeText(context, "Chiave '$key' cancellata", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(context, "Chiave '$key' non trovata", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
 }
