@@ -23,6 +23,7 @@ import com.example.seedapp.fragments.SettingsFragment
 import com.example.seedapp.fragments.UserFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.util.Locale
+import android.view.WindowManager
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,6 +41,11 @@ class MainActivity : AppCompatActivity() {
         // Inizializza LanguageManager e carica la lingua salvata
 
         setContentView(binding.root)
+
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+        )
 /*
         val backButton: MaterialButton = binding.back
 

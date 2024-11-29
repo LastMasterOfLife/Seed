@@ -66,7 +66,7 @@ class TreeView @JvmOverloads constructor(
     }
 
     private var branchLength = 0f // Lunghezza attuale del ramo
-    private val incrementValue = 70f // Valore da incrementare ad ogni clic sul pulsante
+    private val incrementValue = 80f // Valore da incrementare ad ogni clic sul pulsante
     private var shouldDrawBranches = false // Variabile per controllare il disegno dei rami
 
     // Variabili per lo zoom e trascinamento
@@ -157,56 +157,59 @@ class TreeView @JvmOverloads constructor(
 
     private fun aiuto( canvas: Canvas,num: Int){
 
-        if (leafPositions.size > 1) {
-            if (num == 0) {
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "1")
-            }
-            if (num == 1) {
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "1")
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "2")
-            }
+        try {
+            if (leafPositions.size > 1) {
+                if (num == 0) {
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "1")
+                }
+                if (num == 1) {
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "1")
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "2")
+                }
+                if (num == 2){
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "1")
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "2")
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[256], "3")
+                }
+
+                if (num == 3){
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "1")
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "2")
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[512], "3")
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[2], "4")
+                }
+
+                if (num == 4){
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "1")
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "2")
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[1024], "3")
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[2], "4")
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[768], "5")
+                }
+                if (num == 5){
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "1")
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "2")
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[1024], "3")
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[2], "4")
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[768], "5")
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[514], "6")
+                }
+                if (num == 6){
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "1")
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "2")
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[2048], "3")
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[2], "4")
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[768], "5")
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[514], "6")
+                    drawCircleAndRectangleOnLeaf(canvas, leafPositions[1026], "7")
+                }
 
 
-            if (num == 2){
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "1")
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "2")
-                //drawCircleAndRectangleOnLeaf(canvas, leafPositions[256], "3")
             }
-
-            if (num == 3){
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "1")
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "2")
-                //drawCircleAndRectangleOnLeaf(canvas, leafPositions[256], "3")
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[2], "4")
-            }
-
-            if (num == 4){
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "1")
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "2")
-                //drawCircleAndRectangleOnLeaf(canvas, leafPositions[256], "3")
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[2], "4")
-                //drawCircleAndRectangleOnLeaf(canvas, leafPositions[768], "5")
-            }
-            if (num == 5){
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "1")
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "2")
-                //drawCircleAndRectangleOnLeaf(canvas, leafPositions[256], "3")
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[2], "4")
-                //drawCircleAndRectangleOnLeaf(canvas, leafPositions[768], "5")
-                //drawCircleAndRectangleOnLeaf(canvas, leafPositions[514], "6")
-            }
-            if (num == 6){
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[0], "1")
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[1], "2")
-                //drawCircleAndRectangleOnLeaf(canvas, leafPositions[256], "3")
-                drawCircleAndRectangleOnLeaf(canvas, leafPositions[2], "4")
-                //drawCircleAndRectangleOnLeaf(canvas, leafPositions[768], "5")
-                //drawCircleAndRectangleOnLeaf(canvas, leafPositions[514], "6")
-                //drawCircleAndRectangleOnLeaf(canvas, leafPositions[1026], "7")
-            }
-
+        }catch (e: Exception){
 
         }
+
     }
 
     private fun isPointInsideCircle(x: Float, y: Float, circleX: Float, circleY: Float, radius: Float): Boolean {
@@ -298,7 +301,7 @@ class TreeView @JvmOverloads constructor(
         )
         addLeafPosition(x, y)
 
-        /*
+
 
         // Disegna il numero univoco della foglia accanto ad essa
         canvas.drawText(
@@ -306,7 +309,7 @@ class TreeView @JvmOverloads constructor(
             x + 20f, y, textPaint
         )
 
-         */
+
 
 
         Log.d("TreeView", "Leaf counter: $leafcount, Leaf positions: ${leafPositions.size}")
