@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <!-- res/layout/reply_item.xml -->
+
 
 
     <LinearLayout
@@ -18,15 +18,15 @@
 
 
         <ImageView
-            android:id="@+id/ohmaIcon"
+            android:id="@+id/bakiIconView"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="50dp"
-            android:src="@drawable/ohma_tokita" />
+            android:src="@drawable/baki_hanma" />
 
 
         <TextView
-            android:id="@+id/replyTextView"
+            android:id="@+id/bakiText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -58,7 +58,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <ImageView
-      android:id="@+id/replyIcon"
+        android:id="@+id/replyIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/reply_icon"
