@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="92dp"
         android:text="The Seed"
-        android:textColor="@color/primary"
+        android:textColor="@color/nuovo"
         android:textSize="80sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,37 +26,68 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/border"
-        android:backgroundTint="@color/background"
+        android:background="@drawable/create_account_border"
+        android:backgroundTint="@color/nuovo2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
 
-        <ImageButton
-            android:id="@+id/imgFB"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="120dp"
-            android:layout_marginTop="20dp"
-            android:backgroundTint="@android:color/transparent"
-            android:src="@drawable/facebook_icon"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/creaAccount" />
-
-        <ImageButton
-            android:id="@+id/imgGoogle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="116dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="108dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="50dp"
-            android:backgroundTint="@android:color/transparent"
-            android:src="@drawable/google_icon"
+            android:background="@drawable/border_icon"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/creaAccount">
+
+            <ImageButton
+                android:id="@+id/imgFB"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:backgroundTint="@android:color/transparent"
+                android:src="@drawable/facebook_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="108dp"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/border_icon"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/creaAccount"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0">
+
+            <ImageButton
+                android:id="@+id/imggoogle"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:backgroundTint="@android:color/transparent"
+                android:src="@drawable/google_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <EditText
             android:id="@+id/nomeIn"
@@ -116,7 +147,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:backgroundTint="@color/primary"
+            android:backgroundTint="@color/nuovo"
             android:paddingHorizontal="50dp"
             android:paddingVertical="15dp"
             android:text="Crea"
@@ -126,10 +157,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/passwordIn" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="80dp"
+            android:backgroundTint="@android:color/transparent"
+            android:text="Login"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

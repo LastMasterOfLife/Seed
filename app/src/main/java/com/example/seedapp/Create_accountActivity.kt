@@ -23,7 +23,7 @@ class Create_accountActivity : AppCompatActivity() {
             loginWithFacebook()
         }
 
-        binding.imgGoogle.setOnClickListener {
+        binding.imggoogle.setOnClickListener {
             loginWithGoogle()
         }
 
