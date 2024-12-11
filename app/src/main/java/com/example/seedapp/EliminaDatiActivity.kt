@@ -1,6 +1,8 @@
 package com.example.seedapp
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -20,7 +22,33 @@ class EliminaDatiActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+        // Listener per il pulsante elimina
+        binding.delete.setOnClickListener {
+            clearApplicationData()
+        }
+    }
+    fun clearApplicationData() {
+        // Cancella tutti i database
+        applicationContext.deleteDatabase("app_database")
 
 
+        // Cancella file interni dell'app
+        val filesDir = filesDir
+        filesDir.deleteRecursively()
+
+
+        // Cancella contenuti di cache
+        val cacheDir = cacheDir
+        cacheDir.deleteRecursively()
+
+
+        // Mostra un messaggio di conferma
+        Toast.makeText(this, "Tutti i dati sono stati eliminati correttamente", Toast.LENGTH_SHORT).show()
+
+
+        // Optional: Chiudi l'attività o reindirizza
+        val intent = Intent(this, Create_accountActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }
