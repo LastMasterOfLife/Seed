@@ -9,6 +9,7 @@ import android.Manifest.permission.RECORD_AUDIO
 import android.Manifest.permission.WRITE_CALENDAR
 import android.Manifest.permission.WRITE_CONTACTS
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -42,15 +43,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         changeStatusBarColor()
-/*
-        val backButton: MaterialButton = binding.back
-
-        backButton.setOnClickListener {
-            onBackPressedDispatcher.onBackPressed()
-        }
-
-
- */
+        val code = intent.getStringExtra("Code")
 
         // Controlla se è il primo accesso
         val sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE)

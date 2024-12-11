@@ -115,7 +115,6 @@ class TreeView @JvmOverloads constructor(
 
         //loadTreeState()
 
-        // Controlla se ci sono dati salvati
         val sharedPreferences = context.getSharedPreferences("TreeState", Context.MODE_PRIVATE)
         if (sharedPreferences.contains("branchMap")) {
             loadTreeState() // Carica lo stato salvato
@@ -127,8 +126,6 @@ class TreeView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         canvas.save()
-        //loadTreeState()
-        //clearTreeKey("branchMap")
         leafcount = 0
         leafPositions.clear()
 
@@ -142,6 +139,11 @@ class TreeView @JvmOverloads constructor(
         val bottomWidth = 100f // Larghezza alla base del tronco
         val topWidth = 25f // Larghezza alla cima del tronco
         val trunkSegments = 100 // Numero di segmenti per creare l'effetto gradiente
+
+        // Carica lo stato solo una volta (inizialmente)
+        if (branchMap.isEmpty()) {
+            loadTreeState()
+        }
 
         // Disegna il tronco a segmenti, diminuendo la larghezza verso l'alto
         for (i in 0 until trunkSegments) {
@@ -170,9 +172,10 @@ class TreeView @JvmOverloads constructor(
         aiuto(canvas,tocchi)
         Log.d("foglieTot", "Numero totale foglie: ${leafPositions.size}")
 
+        saveTreeState()
+
         canvas.restore()
 
-        //saveTreeState()
 
     }
 
@@ -410,18 +413,17 @@ class TreeView @JvmOverloads constructor(
     // salvare lo stato dell'albero
 
      fun saveTreeState() {
-        val sharedPreferences = context.getSharedPreferences("TreeViewPrefs", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
+         val sharedPreferences = context.getSharedPreferences("TreeState", Context.MODE_PRIVATE)
+         val editor = sharedPreferences.edit()
+         val gson = Gson()
+         val branchMapJson = gson.toJson(branchMap)
+         editor.putString("branchMap", branchMapJson)
 
-        // Serializza il branchMap in formato JSON
-        val gson = Gson()
-        val json = gson.toJson(branchMap)
+         // Salva leafPositions come stringa JSON
+         val leafPositionsJson = gson.toJson(leafPositions)
+         editor.putString("leafPositions", leafPositionsJson)
 
-        // Salva la stringa JSON nelle SharedPreferences
-        editor.putString("branchMap", json)
-        editor.putInt("branchCounter", branchCounter)
-        editor.putInt("leafcount", leafcount)
-        editor.apply()
+         editor.apply()
 
         Log.d("stato", "stato albero salvato")
     }
@@ -429,27 +431,26 @@ class TreeView @JvmOverloads constructor(
     // caricare lo stato dell'albero
 
      fun loadTreeState() {
-        val sharedPreferences = context.getSharedPreferences("TreeViewPrefs", Context.MODE_PRIVATE)
+         val sharedPreferences = context.getSharedPreferences("TreeState", Context.MODE_PRIVATE)
+         val gson = Gson()
+         // Carica branchMap dal JSON
+         val branchMapJson = sharedPreferences.getString("branchMap", null)
+         val branchMapType = object : TypeToken<Map<Int, Branch>>() {}.type
+         if (branchMapJson != null) {
+             branchMap.clear()
+             branchMap.putAll(gson.fromJson(branchMapJson, branchMapType))
+         }
 
-        // Ottieni la stringa JSON salvata
-        val gson = Gson()
-        val json = sharedPreferences.getString("branchMap", null)
-        val type = object : TypeToken<MutableMap<Int, Branch>>() {}.type
+         // Carica leafPositions dal JSON
+         val leafPositionsJson = sharedPreferences.getString("leafPositions", null)
+         val leafPositionsType = object : TypeToken<List<PointF>>() {}.type
+         if (leafPositionsJson != null) {
+             leafPositions.clear()
+             leafPositions.addAll(gson.fromJson(leafPositionsJson, leafPositionsType))
+         }
 
-        if (json != null) {
-            //branchMap.clear()
-            //branchMap.putAll(gson.fromJson(json, type))
-            val type = object : TypeToken<MutableMap<Int, Branch>>() {}.type
-            branchMap.putAll(gson.fromJson(json, type))
-            shouldDrawBranches = true
-        }
-
-        branchCounter = sharedPreferences.getInt("branchCounter", 0)
-        leafcount = sharedPreferences.getInt("leafcount", 0)
-
-        // Forza il ridisegno dell'albero
-        //invalidate()
-        //draw(Canvas)
+         // Assicurati che vengano caricati i dati prima di ridisegnare
+         invalidate()
         Log.d("stato", "stato albero caricato")
     }
 
@@ -460,6 +461,7 @@ class TreeView @JvmOverloads constructor(
         sharedPreferences.edit().clear().apply()
     }
 
+    /*
     fun handleButtonClick(button: Button) {
         button.setOnClickListener {
             val sharedPreferences = context.getSharedPreferences("TreeState", Context.MODE_PRIVATE)
@@ -471,5 +473,7 @@ class TreeView @JvmOverloads constructor(
             }
         }
     }
+
+     */
 
 }

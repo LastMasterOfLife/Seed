@@ -36,6 +36,7 @@ class SeedFragment : Fragment() {
         addBranchButton.setOnClickListener {
             if (counttap <7){
                 val sharedPreferences = context?.getSharedPreferences("TreeState", Context.MODE_PRIVATE)
+                /*
                 if (sharedPreferences != null) {
                     if (sharedPreferences.contains("branchMap")) {
                         treeView.loadTreeState() // Recupera lo stato salvato
@@ -44,7 +45,9 @@ class SeedFragment : Fragment() {
                         treeView.incrementBranchLength(counttap)
                     }
                 }
-                //treeView.incrementBranchLength(counttap) // Chiamata al metodo per aggiungere un ramo
+
+                 */
+                treeView.incrementBranchLength(counttap) // Chiamata al metodo per aggiungere un ramo
                 //treeView.handleButtonClick(addBranchButton)
                 counttap++
             }

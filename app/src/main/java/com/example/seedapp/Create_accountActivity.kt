@@ -101,11 +101,20 @@ class Create_accountActivity : AppCompatActivity() {
 
     private fun createNewAccount() {
         val intent = Intent(this, MainActivity::class.java)
+        val code = generateRandomString()
+        intent.putExtra("Code",code)
         startActivity(intent)
     }
 
     private fun goToLogin() {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
+    }
+
+    fun generateRandomString(): String {
+        val allowedChars = "123456789!@#$%^&*()_+-=[]{}|;:',.<>?/"
+        return (1..9)
+            .map { allowedChars.random() }
+            .joinToString("")
     }
 }
