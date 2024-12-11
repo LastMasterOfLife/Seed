@@ -40,6 +40,10 @@ class Create_accountActivity : AppCompatActivity() {
                 }
             }
         }
+
+        binding.Login.setOnClickListener {
+            goToLogin()
+        }
     }
 
     private fun checkPassword(password: String) : Boolean{
@@ -100,5 +104,8 @@ class Create_accountActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-
+    private fun goToLogin() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+    }
 }
