@@ -14,6 +14,7 @@ import android.graphics.PointF
 import android.graphics.RectF
 import android.graphics.Typeface
 import android.util.Log
+import android.widget.Button
 import android.widget.Toast
 import com.example.seedapp.DatailGoalsActivity
 import com.example.seedapp.GeneraliActivity
@@ -72,7 +73,7 @@ class TreeView @JvmOverloads constructor(
 
     private var branchLength = 0f // Lunghezza attuale del ramo
     private val incrementValue = 80f // Valore da incrementare ad ogni clic sul pulsante
-    private var shouldDrawBranches = false // Variabile per controllare il disegno dei rami
+    var shouldDrawBranches = false // Variabile per controllare il disegno dei rami
 
     // Variabili per lo zoom e trascinamento
     private var previousX = 0f
@@ -112,7 +113,15 @@ class TreeView @JvmOverloads constructor(
             }
         })
 
-        loadTreeState()
+        //loadTreeState()
+
+        // Controlla se ci sono dati salvati
+        val sharedPreferences = context.getSharedPreferences("TreeState", Context.MODE_PRIVATE)
+        if (sharedPreferences.contains("branchMap")) {
+            loadTreeState() // Carica lo stato salvato
+        } else {
+            resetTree() // Configurazione iniziale
+        }
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -152,7 +161,7 @@ class TreeView @JvmOverloads constructor(
         val branchStartY = startY - trunkHeight // Subito sopra il tronco
 
         // Disegna il primo ramo
-        if (shouldDrawBranches) {
+        if (shouldDrawBranches || branchMap.isNotEmpty()) {
             drawBranch(canvas, branchStartX, branchStartY, -90.0, branchLength) // Primo ramo
         }
 
@@ -163,7 +172,7 @@ class TreeView @JvmOverloads constructor(
 
         canvas.restore()
 
-        saveTreeState()
+        //saveTreeState()
 
     }
 
@@ -400,7 +409,7 @@ class TreeView @JvmOverloads constructor(
 
     // salvare lo stato dell'albero
 
-    private fun saveTreeState() {
+     fun saveTreeState() {
         val sharedPreferences = context.getSharedPreferences("TreeViewPrefs", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
 
@@ -419,7 +428,7 @@ class TreeView @JvmOverloads constructor(
 
     // caricare lo stato dell'albero
 
-    private fun loadTreeState() {
+     fun loadTreeState() {
         val sharedPreferences = context.getSharedPreferences("TreeViewPrefs", Context.MODE_PRIVATE)
 
         // Ottieni la stringa JSON salvata
@@ -428,15 +437,19 @@ class TreeView @JvmOverloads constructor(
         val type = object : TypeToken<MutableMap<Int, Branch>>() {}.type
 
         if (json != null) {
-            branchMap.clear()
+            //branchMap.clear()
+            //branchMap.putAll(gson.fromJson(json, type))
+            val type = object : TypeToken<MutableMap<Int, Branch>>() {}.type
             branchMap.putAll(gson.fromJson(json, type))
+            shouldDrawBranches = true
         }
 
         branchCounter = sharedPreferences.getInt("branchCounter", 0)
         leafcount = sharedPreferences.getInt("leafcount", 0)
 
         // Forza il ridisegno dell'albero
-        invalidate()
+        //invalidate()
+        //draw(Canvas)
         Log.d("stato", "stato albero caricato")
     }
 
@@ -447,5 +460,16 @@ class TreeView @JvmOverloads constructor(
         sharedPreferences.edit().clear().apply()
     }
 
+    fun handleButtonClick(button: Button) {
+        button.setOnClickListener {
+            val sharedPreferences = context.getSharedPreferences("TreeState", Context.MODE_PRIVATE)
+            if (sharedPreferences.contains("branchMap")) {
+                loadTreeState() // Recupera lo stato salvato
+            } else {
+                shouldDrawBranches = true
+                invalidate() // Disegna l'albero iniziale
+            }
+        }
+    }
 
 }

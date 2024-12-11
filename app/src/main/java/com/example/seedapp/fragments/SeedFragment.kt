@@ -1,6 +1,7 @@
 package com.example.seedapp.fragments
 
 import android.app.AlertDialog
+import android.content.Context
 import android.graphics.Color
 import android.graphics.Rect
 import android.os.Bundle
@@ -34,12 +35,20 @@ class SeedFragment : Fragment() {
         var counttap = 0
         addBranchButton.setOnClickListener {
             if (counttap <7){
-                treeView.incrementBranchLength(counttap) // Chiamata al metodo per aggiungere un ramo
+                val sharedPreferences = context?.getSharedPreferences("TreeState", Context.MODE_PRIVATE)
+                if (sharedPreferences != null) {
+                    if (sharedPreferences.contains("branchMap")) {
+                        treeView.loadTreeState() // Recupera lo stato salvato
+                    } else {
+                        treeView.shouldDrawBranches = true
+                        treeView.incrementBranchLength(counttap)
+                    }
+                }
+                //treeView.incrementBranchLength(counttap) // Chiamata al metodo per aggiungere un ramo
+                //treeView.handleButtonClick(addBranchButton)
                 counttap++
             }
-
         }
-
         return view
     }
 
