@@ -2,25 +2,18 @@ package com.example.seedapp.fragments
 
 import android.app.AlertDialog
 import android.content.Context
-import android.graphics.Color
-import android.graphics.Rect
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.*
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.seedapp.Data.TreeView
 import com.example.seedapp.R
 import com.example.seedapp.databinding.FragmentSeedBinding
-import kotlin.math.max
-import kotlin.math.min
-import kotlin.random.Random
 
 class SeedFragment : Fragment() {
 
     private lateinit var treeView: TreeView
-    lateinit var binding: FragmentSeedBinding
+    private lateinit var binding: FragmentSeedBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,28 +25,53 @@ class SeedFragment : Fragment() {
         treeView = view.findViewById(R.id.treeView)
         val addBranchButton: Button = view.findViewById(R.id.addBranchButton)
 
-        var counttap = 0
+        var countTap = 0
         addBranchButton.setOnClickListener {
-            if (counttap <7){
-                val sharedPreferences = context?.getSharedPreferences("TreeState", Context.MODE_PRIVATE)
-                /*
-                if (sharedPreferences != null) {
-                    if (sharedPreferences.contains("branchMap")) {
-                        treeView.loadTreeState() // Recupera lo stato salvato
-                    } else {
-                        treeView.shouldDrawBranches = true
-                        treeView.incrementBranchLength(counttap)
-                    }
+            if (countTap < 7) {
+                showCustomDialog { text1, text2 ->
+                    // Salva i dati o effettua operazioni
+                    Toast.makeText(requireContext(), "Dati salvati: $text1, $text2", Toast.LENGTH_SHORT).show()
+                    showTree(countTap)
+                    countTap++
                 }
-
-                 */
-                treeView.incrementBranchLength(counttap) // Chiamata al metodo per aggiungere un ramo
-                //treeView.handleButtonClick(addBranchButton)
-                counttap++
             }
         }
+
         return view
     }
 
+    private fun showCustomDialog(onSave: (String, String) -> Unit) {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_custom, null)
+        val editText1: EditText = dialogView.findViewById(R.id.editText1)
+        val editText2: EditText = dialogView.findViewById(R.id.editText2)
+        val saveButton: Button = dialogView.findViewById(R.id.saveButton)
 
+        val dialog = AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .create()
+
+        dialog.window?.setBackgroundDrawableResource(R.drawable.dialog_background)
+
+        saveButton.setOnClickListener {
+            val text1 = editText1.text.toString()
+            val text2 = editText2.text.toString()
+
+            if (text1.isNotEmpty() && text2.isNotEmpty()) {
+                onSave(text1, text2)
+                dialog.dismiss()
+            } else {
+                Toast.makeText(requireContext(), "Per favore, compila entrambi i campi.", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        dialog.show()
+    }
+
+    private fun showTree(countTap: Int) {
+        if (countTap < 7) {
+            treeView.incrementBranchLength(countTap)
+        }
+    }
+
+    data class DataObject(val text1: String, val text2: String)
 }
