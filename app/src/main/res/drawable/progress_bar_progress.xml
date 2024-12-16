@@ -13,7 +13,7 @@
         <clip>
             <shape>
                 <corners android:radius="12dp" />
-                <solid android:color="@color/quaternario" /> <!-- Colore del progresso -->
+                <solid android:color="@color/semiScuro" /> <!-- Colore del progresso -->
             </shape>
         </clip>
     </item>
