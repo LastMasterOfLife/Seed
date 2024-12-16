@@ -31,7 +31,7 @@ class SeedFragment : Fragment() {
                 showCustomDialog { text1, text2 ->
                     // Salva i dati o effettua operazioni
                     Toast.makeText(requireContext(), "Dati salvati: $text1, $text2", Toast.LENGTH_SHORT).show()
-                    showTree(countTap)
+                    showTree(countTap,text1)
                     countTap++
                 }
             }
@@ -67,9 +67,9 @@ class SeedFragment : Fragment() {
         dialog.show()
     }
 
-    private fun showTree(countTap: Int) {
+    private fun showTree(countTap: Int,title:String) {
         if (countTap < 7) {
-            treeView.incrementBranchLength(countTap)
+            treeView.incrementBranchLength(countTap,title)
         }
     }
 

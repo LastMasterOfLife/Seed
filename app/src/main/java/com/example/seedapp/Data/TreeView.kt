@@ -38,9 +38,16 @@ class TreeView @JvmOverloads constructor(
     private val leafPositions = mutableListOf<PointF>()  // Supponiamo che tu abbia una lista di posizioni delle foglie
 
 
-
-
+    var titolo = ""
     var tocchi = 0
+
+    var isLibera1 = true
+    var isLibera2 = true
+    var isLibera3 = true
+    var isLibera4 = true
+    var isLibera5 = true
+    var isLibera6 = true
+    var isLibera7 = true
 
     data class Branch(
         val id: Int = 0,
@@ -169,7 +176,8 @@ class TreeView @JvmOverloads constructor(
 
         // Disegna il cerchio e il rettangolo sulla prima foglia
 
-        aiuto(canvas,tocchi)
+        // passare il titolo salvato dalla modale e passarlo all'albero inserendolo nel primo libero disponibile
+        aiuto(canvas,tocchi,titolo)
         Log.d("foglieTot", "Numero totale foglie: ${leafPositions.size}")
 
         saveTreeState()
@@ -179,7 +187,7 @@ class TreeView @JvmOverloads constructor(
 
     }
 
-    private fun aiuto( canvas: Canvas,num: Int){
+    private fun aiuto( canvas: Canvas,num: Int, title: String){
 
         try {
             if (leafPositions.size > 1) {
@@ -353,11 +361,12 @@ class TreeView @JvmOverloads constructor(
     }
 
     // Metodo pubblico per incrementare la lunghezza del ramo
-    fun incrementBranchLength(tap: Int) {
+    fun incrementBranchLength(tap: Int, title: String) {
         resetTree()
         branchLength += incrementValue
         tocchi = tap
         shouldDrawBranches = true
+        titolo = title
         startBranchAnimation()
     }
 
