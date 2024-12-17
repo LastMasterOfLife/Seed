@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/sky_green"
     tools:context=".fragments.SettingsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +20,7 @@
             android:layout_marginTop="76dp"
             android:layout_marginEnd="15dp"
             android:background="@drawable/background_border_dupicate"
-            android:backgroundTint="@color/quaternario"
+            android:backgroundTint="#87319C73"
             android:elevation="80dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -70,7 +71,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginEnd="15dp"
             android:background="@drawable/background_border_dupicate"
-            android:backgroundTint="@color/quaternario"
+            android:backgroundTint="#87319C73"
             android:elevation="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -121,7 +122,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="15dp"
             android:background="@drawable/background_border_dupicate"
-            android:backgroundTint="@color/quaternario"
+            android:backgroundTint="#87319C73"
             android:clipChildren="false"
             android:elevation="80dp"
             android:outlineSpotShadowColor="@color/quaternario"
