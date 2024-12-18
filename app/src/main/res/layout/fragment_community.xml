@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/sfondo_utimate"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.CommunityFragment">
+
+
+    <ScrollView
+        android:id="@+id/scroller_id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="vertical">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <!-- Main background card -->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/topGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.05" />
+
+
+            <View
+                android:id="@+id/backgroundView"
+                android:layout_width="0dp"
+                android:layout_height="250dp"
+                android:layout_marginHorizontal="@dimen/margin_medium"
+                android:background="@drawable/border"
+                android:backgroundTint="@color/background"
+                app:layout_constraintTop_toTopOf="@id/topGuideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.35" />
+
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="Message"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:ellipsize="end"
+                android:maxLines="5"
+                android:padding="@dimen/padding_large"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="18sp"
+                android:autoSizeStepGranularity="2sp"
+                app:layout_constraintBottom_toBottomOf="@id/backgroundView"
+                app:layout_constraintEnd_toEndOf="@id/backgroundView"
+                app:layout_constraintStart_toStartOf="@id/backgroundView"
+                app:layout_constraintTop_toBottomOf="@id/baki_hanma_icon"
+                android:layout_marginTop="@dimen/margin_small" />
+
+
+            <!-- User info section -->
+            <ImageView
+                android:id="@+id/baki_hanma_icon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_medium"
+                android:adjustViewBounds="true"
+                app:layout_constraintWidth_percent="0.12"
+                android:src="@drawable/baki_hanma"
+                app:layout_constraintStart_toStartOf="@id/backgroundView"
+                app:layout_constraintTop_toTopOf="@id/backgroundView" />
+
+
+            <TextView
+                android:id="@+id/nameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Nome utente"
+                android:textColorHint="@color/white"
+                android:layout_marginStart="@dimen/margin_medium"
+                app:layout_constraintStart_toEndOf="@id/baki_hanma_icon"
+                app:layout_constraintTop_toTopOf="@id/baki_hanma_icon"
+                app:layout_constraintBottom_toBottomOf="@id/baki_hanma_icon" />
+
+
+            <!-- Interaction buttons -->
+            <LinearLayout
+                android:id="@+id/interactionLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="@id/backgroundView"
+                app:layout_constraintTop_toBottomOf="@id/textView">
+
+
+                <ImageView
+                    android:id="@+id/likeIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/like_icon" />
+
+
+                <ImageView
+                    android:id="@+id/reply_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_large"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/reply_icon" />
+            </LinearLayout>
+
+
+
+
+            <!-- Contenitore nascosto per EditText e messaggio -->
+            <LinearLayout
+                android:id="@+id/replyContainer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/margin_medium"
+                app:layout_constraintStart_toStartOf="@id/backgroundView"
+                app:layout_constraintEnd_toEndOf="@id/backgroundView"
+                app:layout_constraintTop_toBottomOf="@id/interactionLayout">
+
+
+                <!-- Immagine profilo -->
+                <ImageView
+                    android:id="@+id/ohmaIcon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ohma_tokita"
+                    android:layout_marginEnd="10dp" />
+
+
+                <EditText
+                    android:id="@+id/replyEditText"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:hint="Scrivi una risposta" />
+
+
+                <Button
+                    android:id="@+id/sendButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Invia" />
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:id="@+id/reply"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="23dp"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                app:layout_constraintStart_toStartOf="@id/backgroundView"
+                app:layout_constraintEnd_toEndOf="@id/backgroundView"
+                app:layout_constraintTop_toBottomOf="@id/interactionLayout"
+                app:layout_constraintBottom_toTopOf="@id/repliesContainer">
+
+
+                <TextView
+                    android:id="@+id/replyTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/repliesContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/reply" />
+            <View
+                android:layout_marginTop="80dp"
+                android:id="@+id/backgroundView2"
+                android:layout_width="0dp"
+                android:layout_height="250dp"
+                android:layout_marginHorizontal="@dimen/margin_medium"
+                android:background="@drawable/border"
+                android:backgroundTint="@color/background"
+                app:layout_constraintTop_toBottomOf="@id/repliesContainer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.35" />
+
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="Message"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:ellipsize="end"
+                android:maxLines="5"
+                android:padding="@dimen/padding_large"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="18sp"
+                android:autoSizeStepGranularity="2sp"
+                app:layout_constraintBottom_toBottomOf="@id/backgroundView2"
+                app:layout_constraintEnd_toEndOf="@id/backgroundView2"
+                app:layout_constraintStart_toStartOf="@id/backgroundView2"
+                app:layout_constraintTop_toBottomOf="@id/ippo_icon"
+                android:layout_marginTop="@dimen/margin_small" />
+
+
+            <!-- User info section -->
+            <ImageView
+                android:id="@+id/ippo_icon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_medium"
+                android:adjustViewBounds="true"
+                app:layout_constraintWidth_percent="0.12"
+                android:src="@drawable/ippo"
+                app:layout_constraintStart_toStartOf="@id/backgroundView2"
+                app:layout_constraintTop_toTopOf="@id/backgroundView2" />
+
+
+            <TextView
+                android:id="@+id/nameText2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Nome utente"
+                android:textColorHint="@color/white"
+                android:layout_marginStart="@dimen/margin_medium"
+                app:layout_constraintStart_toEndOf="@id/ippo_icon"
+                app:layout_constraintTop_toTopOf="@id/ippo_icon"
+                app:layout_constraintBottom_toBottomOf="@id/ippo_icon" />
+
+
+            <!-- Interaction buttons -->
+            <LinearLayout
+                android:id="@+id/interactionLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="@id/backgroundView2"
+                app:layout_constraintTop_toBottomOf="@id/textView2">
+
+
+                <ImageView
+                    android:id="@+id/likeIcon2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/like_icon" />
+
+
+                <ImageView
+                    android:id="@+id/reply_icon2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_large"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/reply_icon" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/replyContainer2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/margin_medium"
+                app:layout_constraintStart_toStartOf="@id/backgroundView2"
+                app:layout_constraintEnd_toEndOf="@id/backgroundView2"
+                app:layout_constraintTop_toBottomOf="@id/interactionLayout2">
+
+
+                <!-- Immagine profilo -->
+                <ImageView
+                    android:id="@+id/ohmaIcon2"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ohma_tokita"
+                    android:layout_marginEnd="10dp" />
+
+
+                <EditText
+                    android:id="@+id/replyEditText2"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:hint="Scrivi una risposta" />
+
+
+                <Button
+                    android:id="@+id/sendButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Invia" />
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:id="@+id/reply2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="23dp"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                app:layout_constraintStart_toStartOf="@id/backgroundView2"
+                app:layout_constraintEnd_toEndOf="@id/backgroundView2"
+                app:layout_constraintTop_toBottomOf="@id/interactionLayout2"
+                app:layout_constraintBottom_toTopOf="@id/repliesContainer2">
+
+
+                <TextView
+                    android:id="@+id/replyTextView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/repliesContainer2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/reply2" />
+
+
+            <View
+                android:id="@+id/backgroundView3"
+                android:layout_marginTop="80dp"
+                android:layout_width="0dp"
+                android:layout_height="250dp"
+                android:layout_marginHorizontal="@dimen/margin_medium"
+                android:background="@drawable/border"
+                android:backgroundTint="@color/background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.35"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/repliesContainer2" />
+
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="Message"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:ellipsize="end"
+                android:maxLines="5"
+                android:padding="@dimen/padding_large"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="18sp"
+                android:autoSizeStepGranularity="2sp"
+                app:layout_constraintBottom_toBottomOf="@id/backgroundView3"
+                app:layout_constraintEnd_toEndOf="@id/backgroundView3"
+                app:layout_constraintStart_toStartOf="@id/backgroundView3"
+                app:layout_constraintTop_toBottomOf="@id/thorfinn_icon"
+                android:layout_marginTop="@dimen/margin_small" />
+
+
+            <!-- User info section -->
+            <ImageView
+                android:id="@+id/thorfinn_icon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_medium"
+                android:adjustViewBounds="true"
+                app:layout_constraintWidth_percent="0.12"
+                android:src="@drawable/thorfin_saga"
+                app:layout_constraintStart_toStartOf="@id/backgroundView3"
+                app:layout_constraintTop_toTopOf="@id/backgroundView3" />
+
+
+            <TextView
+                android:id="@+id/nameText3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Nome utente"
+                android:textColorHint="@color/white"
+                android:layout_marginStart="@dimen/margin_medium"
+                app:layout_constraintStart_toEndOf="@id/thorfinn_icon"
+                app:layout_constraintTop_toTopOf="@id/thorfinn_icon"
+                app:layout_constraintBottom_toBottomOf="@id/thorfinn_icon" />
+
+
+            <!-- Interaction buttons -->
+            <LinearLayout
+                android:id="@+id/interactionLayout3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="@id/backgroundView3"
+                app:layout_constraintTop_toBottomOf="@id/textView3">
+
+
+                <ImageView
+                    android:id="@+id/likeIcon3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/like_icon" />
+
+
+                <ImageView
+                    android:id="@+id/reply_icon3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_large"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/reply_icon" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/replyContainer3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/margin_medium"
+                app:layout_constraintStart_toStartOf="@id/backgroundView3"
+                app:layout_constraintEnd_toEndOf="@id/backgroundView3"
+                app:layout_constraintTop_toBottomOf="@id/interactionLayout3">
+
+
+                <!-- Immagine profilo -->
+                <ImageView
+                    android:id="@+id/ohmaIcon3"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ohma_tokita"
+                    android:layout_marginEnd="10dp" />
+
+
+                <EditText
+                    android:id="@+id/replyEditText3"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:hint="Scrivi una risposta" />
+
+
+                <Button
+                    android:id="@+id/sendButton3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Invia" />
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:id="@+id/reply3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="23dp"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                app:layout_constraintStart_toStartOf="@id/backgroundView3"
+                app:layout_constraintEnd_toEndOf="@id/backgroundView3"
+                app:layout_constraintTop_toBottomOf="@id/interactionLayout3"
+                app:layout_constraintBottom_toTopOf="@id/repliesContainer3">
+
+
+                <TextView
+                    android:id="@+id/replyTextView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/repliesContainer3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/reply3" />
+
+
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</FrameLayout>

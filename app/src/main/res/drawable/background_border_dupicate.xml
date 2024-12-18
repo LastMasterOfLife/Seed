@@ -1,0 +1,20 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Bordo esterno -->
+    <item>
+        <shape>
+            <solid android:color="@color/bordo_ultimate"
+                />
+            <corners android:radius="35dp" />
+        </shape>
+    </item>
+
+    <!-- Contenuto interno con bordo più piccolo -->
+    <item android:top="10dp" android:bottom="10dp" android:left="10dp" android:right="10dp">
+        <shape>
+            <solid android:color="@color/Interno_ultimate" /> <!-- Sfondo interno -->
+            <corners android:radius="30dp" />
+        </shape>
+    </item>
+
+</layer-list>

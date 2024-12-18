@@ -1,0 +1,9 @@
+<resources>
+    <!-- Tema personalizzato per fullscreen -->
+    <style name="AppTheme.FullScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Nascondi la barra di stato -->
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:screenOrientation">portrait</item>
+    </style>
+</resources>
