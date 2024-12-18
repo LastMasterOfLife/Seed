@@ -1,6 +1,8 @@
 package com.example.seedapp.fragments
 
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,12 +15,22 @@ import com.example.seedapp.R
 class CommunityFragment : Fragment() {
 
 
-    private lateinit var replyIcon: ImageView
-    private lateinit var replyContainer: LinearLayout
-    private lateinit var replyEditText: EditText
-    private lateinit var sendButton: Button
-    private lateinit var repliesContainer: LinearLayout
-    private lateinit var likeIcon: ImageView
+    private lateinit var elements: List<ReplyComponent>
+
+
+
+
+    data class ReplyComponent(
+        val replyIcon: ImageView,
+        val replyContainer: LinearLayout,
+        val replyEditText: EditText,
+        val sendButton: Button,
+        val likeIcon: ImageView,
+        val repliesContainer: LinearLayout,
+        var isLiked: Boolean = false
+    )
+
+
 
 
     override fun onCreateView(
@@ -28,41 +40,76 @@ class CommunityFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_community, container, false)
 
 
-        // Inizializza gli elementi UI
-        replyIcon = view.findViewById(R.id.reply_icon)
-        replyContainer = view.findViewById(R.id.replyContainer)
-        replyEditText = view.findViewById(R.id.replyEditText)
-        sendButton = view.findViewById(R.id.sendButton)
-        repliesContainer = view.findViewById(R.id.repliesContainer)
-        likeIcon = view.findViewById(R.id.likeIcon)
 
 
-        var isLiked = false
 
 
-        // Logica per alternare il contenitore di risposta
-        replyIcon.setOnClickListener {
-            toggleVisibility(replyContainer)
-        }
+        elements = listOf(
+            ReplyComponent(
+                view.findViewById(R.id.reply_icon),
+                view.findViewById(R.id.replyContainer),
+                view.findViewById(R.id.replyEditText),
+                view.findViewById(R.id.sendButton),
+                view.findViewById(R.id.likeIcon),
+                view.findViewById(R.id.repliesContainer)
 
 
-        // Logica per inviare una risposta
-        sendButton.setOnClickListener {
-            sendReply()
-        }
+            ),
+            ReplyComponent(
+                view.findViewById(R.id.reply_icon2),
+                view.findViewById(R.id.replyContainer2),
+                view.findViewById(R.id.replyEditText2),
+                view.findViewById(R.id.sendButton2),
+                view.findViewById(R.id.likeIcon2),
+                view.findViewById(R.id.repliesContainer2),
 
 
-        // Gestione del like
-        likeIcon.setImageResource(R.drawable.like_icon)
-        likeIcon.tag = "not_liked"
+                ),
+            ReplyComponent(
+                view.findViewById(R.id.reply_icon3),
+                view.findViewById(R.id.replyContainer3),
+                view.findViewById(R.id.replyEditText3),
+                view.findViewById(R.id.sendButton3),
+                view.findViewById(R.id.likeIcon3),
+                view.findViewById(R.id.repliesContainer3),
 
 
-        likeIcon.setOnClickListener {
-            isLiked = toggleLikeIcon(likeIcon, isLiked)
+                )
+        )
+
+
+        elements.forEach { component ->
+            component.replyIcon.setOnClickListener {
+                toggleVisibility(component.replyContainer)
+            }
+
+
+            component.sendButton.setOnClickListener {
+                sendReply(component)
+            }
+            component.likeIcon.setOnClickListener {
+                toggleLike(component)
+            }
+
+
         }
 
 
         return view
+    }
+
+
+    private fun toggleLike(component: ReplyComponent) {
+        component.isLiked = !component.isLiked
+        if (component.isLiked) {
+            component.likeIcon.setImageResource(R.drawable.like_icon2)
+
+
+        } else {
+            component.likeIcon.setImageResource(R.drawable.like_icon)
+
+
+        }
     }
 
 
@@ -71,16 +118,17 @@ class CommunityFragment : Fragment() {
     }
 
 
-    private fun sendReply() {
-        val replyText = replyEditText.text.toString().trim()
+    private fun sendReply(component: ReplyComponent) {
+        val replyText = component.replyEditText.text.toString().trim()
 
 
         if (replyText.isNotBlank()) {
             // Crea una nuova view per il commento direttamente nel repliesContainer
-            val commentView = layoutInflater.inflate(R.layout.reply_item, repliesContainer, false)
+            val commentView = layoutInflater.inflate(R.layout.reply_item, component.repliesContainer, false)
 
 
-            val toggleIcon: ImageView = commentView.findViewById(R.id.toggleIcon)
+            val plusIcon: ImageView = commentView.findViewById(R.id.toggleIcon)
+            val likeIcon: ImageView = commentView.findViewById(R.id.likeIcon)
             val replyIcon: ImageView = commentView.findViewById(R.id.replyIcon)
             val replyTextView: TextView = commentView.findViewById(R.id.replyTextView)
             val subCommentInputContainer: LinearLayout = commentView.findViewById(R.id.subCommentInputContainer)
@@ -89,14 +137,26 @@ class CommunityFragment : Fragment() {
             val subCommentContainer: LinearLayout = commentView.findViewById(R.id.subCommentContainer)
 
 
+            var isLiked= false
+
+
+            likeIcon?.setOnClickListener {
+                isLiked = !isLiked
+                if (isLiked) {
+                    likeIcon.setImageResource(R.drawable.like_icon2)  // icona colorata/piena
+                } else {
+                    likeIcon.setImageResource(R.drawable.like_icon)   // icona vuota
+                }
+            }
+
             // Imposta il testo del commento
             replyTextView.text = replyText
 
 
             // Toggle visibilità dei sotto-commenti
-            toggleIcon.setOnClickListener {
+            plusIcon.setOnClickListener {
                 toggleVisibility(subCommentContainer)
-                toggleIcon.setImageResource(if (subCommentContainer.visibility == View.VISIBLE) R.drawable.minus_icon else R.drawable.plus_icon)
+                plusIcon.setImageResource(if (subCommentContainer.visibility == View.VISIBLE) R.drawable.minus_icon else R.drawable.plus_icon)
             }
 
 
@@ -120,12 +180,12 @@ class CommunityFragment : Fragment() {
 
 
             // Aggiungi il commento al container dei commenti nel fragment_community
-            repliesContainer.addView(commentView)
+            component.repliesContainer.addView(commentView)
 
 
             // Resetta l'input e nascondi il container di risposta
-            replyEditText.text.clear()
-            replyContainer.visibility = View.GONE
+            component.replyEditText.text.clear()
+            component.replyContainer.visibility = View.GONE
         } else {
             Toast.makeText(requireContext(), "Scrivi qualcosa prima di inviare", Toast.LENGTH_SHORT).show()
         }
@@ -134,11 +194,23 @@ class CommunityFragment : Fragment() {
 
     private fun addSubComment(parentContainer: LinearLayout, subCommentText: String) {
         val subCommentView = layoutInflater.inflate(R.layout.comment_item, parentContainer, false)
-
-
+        val likeIcon : ImageView = subCommentView.findViewById(R.id.likeIcon)
         val subCommentTextView: TextView = subCommentView.findViewById(R.id.subCommentTextView)
-        //val toggleSubCommentIcon: ImageView = subCommentView.findViewById(R.id.toggleSubCommentIcon)
+        //val plusIcon: ImageView = subCommentView.findViewById(R.id.toggleIcon)
         val subCommentReplyIcon: ImageView = subCommentView.findViewById(R.id.replyIcon)
+
+
+        var isLiked= false
+
+
+        likeIcon?.setOnClickListener {
+            isLiked = !isLiked
+            if (isLiked) {
+                likeIcon.setImageResource(R.drawable.like_icon2)  // icona colorata/piena
+            } else {
+                likeIcon.setImageResource(R.drawable.like_icon)   // icona vuota
+            }
+        }
 
 
         subCommentTextView.text = subCommentText
@@ -147,7 +219,7 @@ class CommunityFragment : Fragment() {
         // Opzionale: Aggiungi logica per il sotto-commento del sotto-commento
         subCommentReplyIcon.setOnClickListener {
             // Puoi implementare una logica per gestire risposte nidificate
-            Toast.makeText(requireContext(), "Funzionalità di risposta nidificata", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Funzio    nalità di risposta nidificata", Toast.LENGTH_SHORT).show()
         }
 
 
@@ -156,18 +228,5 @@ class CommunityFragment : Fragment() {
 
         // Assicurati che il contenitore dei sotto-commenti sia visibile
         parentContainer.visibility = View.VISIBLE
-    }
-
-
-    private fun toggleLikeIcon(icon: ImageView, currentState: Boolean): Boolean {
-        return if (currentState) {
-            icon.setImageResource(R.drawable.like_icon)
-            icon.tag = "not_liked"
-            false
-        } else {
-            icon.setImageResource(R.drawable.like_icon2)
-            icon.tag = "liked"
-            true
-        }
     }
 }

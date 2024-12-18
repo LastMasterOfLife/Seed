@@ -67,13 +67,13 @@ class TreeView @JvmOverloads constructor(
     }
 
     private val Trunkpaint = Paint().apply {
-        color = Color.rgb(101, 67, 33) // Marrone per tronco e rami
+        color = Color.rgb(141, 91, 54) // Marrone per tronco e rami
         //color = Color.TRANSPARENT
         isAntiAlias = true
     }
 
     private val paint = Paint().apply {
-        color = Color.rgb(101, 67, 33) // Marrone per tronco e rami
+        color = Color.rgb(141, 91, 54) // Marrone per tronco e rami
         //color = Color.TRANSPARENT
         isAntiAlias = true
     }
@@ -96,7 +96,7 @@ class TreeView @JvmOverloads constructor(
     private val subBranchWidth = 8f
 
     private val leafPaint = Paint().apply {
-        color = 0xFF4CAF50.toInt() // Colore verde per le foglie
+        color = 0xFFFFF1DE.toInt() // Colore verde per le foglie
         style = Paint.Style.FILL
     }
 

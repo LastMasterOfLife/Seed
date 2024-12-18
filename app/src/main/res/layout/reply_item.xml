@@ -108,7 +108,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="Scrivi un sotto-commento"
-            android:background="@android:color/white"
             android:padding="8dp"
             android:textColor="@android:color/black" />
 
