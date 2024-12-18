@@ -7,11 +7,6 @@
         android:icon="@drawable/community_icon"
         android:title="Community" />
     <item
-        android:id="@+id/goals"
-        android:enabled="true"
-        android:icon="@drawable/target"
-        android:title="Goals" />
-    <item
         android:id="@+id/seed"
         android:enabled="true"
         android:icon="@drawable/seed_icon"
@@ -21,9 +16,4 @@
         android:enabled="true"
         android:icon="@drawable/user_icon"
         android:title="User" />
-    <item
-        android:id="@+id/settings"
-        android:enabled="true"
-        android:icon="@drawable/settings_icon"
-        android:title="Settings" />
 </menu>

@@ -20,7 +20,7 @@
             android:padding="10dp"
             android:paddingRight="70dp"
             android:text="Wistley"
-            android:textColor="@color/black"
+            android:textColor="@color/testo_ultimate"
             android:textAlignment="textStart"
             android:textSize="22dp" />
 

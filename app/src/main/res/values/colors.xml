@@ -17,4 +17,13 @@
     <color name="nuovo1">#A8A761</color>
     <color name="nuovo2">#907A51</color>
 
+
+
+    <color name="sfondo_utimate">#61856B</color>
+    <color name="Interno_ultimate">#8D5B36</color>
+    <color name="bordo_ultimate">#FFF3E0</color>
+    <color name="testo_ultimate">#FFF1DE</color>
+    <color name="scuro_ultimate">#242424</color>
+
+
 </resources>

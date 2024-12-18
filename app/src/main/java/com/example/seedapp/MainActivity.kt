@@ -13,6 +13,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -42,6 +43,10 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
+        window.decorView.systemUiVisibility =
+            (View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_FULLSCREEN)
+
+
         changeStatusBarColor()
         val code = intent.getStringExtra("Code")
 
@@ -63,15 +68,16 @@ class MainActivity : AppCompatActivity() {
         // default icon Navigationbar
         bottomNavigationView.selectedItemId = R.id.seed
 
+        binding.settings.setOnClickListener {
+            val intent = Intent(this, settings_activity::class.java)
+            startActivity(intent)
+        }
+
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
 
                 R.id.community -> {
                     supportFragmentManager.beginTransaction().replace(R.id.container, CommunityFragment()).commit()
-                    true
-                }
-                R.id.goals -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.container, GoalsFragment()).commit()
                     true
                 }
                 R.id.seed -> {
@@ -80,10 +86,6 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.user -> {
                     supportFragmentManager.beginTransaction().replace(R.id.container, UserFragment()).commit()
-                    true
-                }
-                R.id.settings -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.container, SettingsFragment()).commit()
                     true
                 }
                 else -> false

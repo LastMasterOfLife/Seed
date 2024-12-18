@@ -2,6 +2,7 @@ package com.example.seedapp
 
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +21,10 @@ class SuonerieActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySuonerieBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        window.decorView.systemUiVisibility =
+            (View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_FULLSCREEN)
+
 
         val soundResources = listOf(R.raw.whistle_notification_sound, R.raw.bubble_notification, R.raw.facebook_notification_sound, R.raw.modern_soft_notification_sound)
 
